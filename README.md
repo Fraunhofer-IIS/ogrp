@@ -88,7 +88,7 @@ exist
     }
 
     protocol = 'OGRP1'
-    id = string ; lower-case, underscore separated id, e.g. 'raw_meas', ...
+    id = string ; lower-case, underscore separated id, e.g. 'measurement', ...
 
 The additional content in the message is dependant on the message id.
 Optional fields are allowed and must be ignored by parsers if unknown
@@ -104,28 +104,29 @@ A message of id 'raw\_meas' for raw measurements of a GNSS receiver,
 e.g. including pseudorange and carrier phase measurements for multiple
 satellites on different channels, can look like this:
 
-    raw_meas = {
+    measurement = {
         'protocol': protocol,
-        'id': 'raw_meas',
+        'id': 'measurement',
         'sw_version': int / hex,
         'timestamp': float,
         'time_status': time_status,
-        'nr_obs': int,
-        'obs': [*raw_meas_obs]
+        'nr_ch_meas': int,
+        'ch_meas': [*ch_meas]
         }
 
     channel_state = 'IDLE' / 'SEARCHING' / 'PULL_IN' / 'SEARCHING' / 'SYNCED'
 
-    raw_meas_obs = {
+    ch_meas = {
         'gnss': string, ; 'GPS' / 'GPS' / ...
         'sat_id': int,
         'signal_type': string, ; 'L1CA' / 'L5I' / 'E5aI' / ...
         'channel_state': channel_state
-        'dopp': float,
-        'carr_phase': float,
+        'doppler': float,
+        'carrier_phase': float,
         'snr': float,
         'locktime': float,
-        'prange': float,
+        'pseudorange': float,
+        'code_phase': float,
         'ch_nr': int
     }
 
@@ -140,7 +141,7 @@ Names of keys should be explicit and unambiguous.
 If desired, abbreviations can be used but should be properly defined. Both
 variants of a key, abbreviated and non-abbreviated should be supported.
 
-Example: "ch_meas" --> "channel_measurement"
+Example: "ch\_meas" --> "channel\_measurement"
 
 
 Security considerations
