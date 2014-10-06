@@ -20,9 +20,10 @@ JSON-RPC.
 OGRP is a protocol based on JSON ([RFC4627]).
 
 For the use in RPC, zerorpc (<http://zerorpc.dotcloud.com/>) is
-recommended as a transport mechanism. For non-RPC use other mechanisms
-may be used, e.g. plain TCP socket, a file, a serial line with a
-wrapping wire protocol.
+recommended as a transport mechanism. Other mechanisms
+may be used for non-RPC, e.g. plain TCP socket, a file, a serial line with a
+wrapping wire protocol all using [NDJ](http://en.wikipedia.org/wiki/Line_Delimited_JSON).
+Files containing OGRP should have the filename extension *.ogrp*.
 
 OGRP is meant to be extendable and future-proof rather than optimized
 regarding performance for a specific case. Many messages are not defined but
