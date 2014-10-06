@@ -11,7 +11,7 @@ have been proposed only by manufacturers for their own products with
 proprietary wire protocols or for limited applications, e.g. RTCM,
 RINEX, NMEA.
 
-OGRP (**O**pen **G**NSS **R**eceiver **P**rotocol) tries to be a
+OGRP (<b>O</b>pen  <b>G</b>NSS <b>R</b>eceiver <b>P</b>rotocol) tries to be a
 protocol for many different causes in the domain of GNSS may it be
 output of raw measurements from receivers over a physical wire
 connection but also supporting RPC (remote procedure call) like
@@ -223,9 +223,8 @@ No further security mechanisms are designed into OGRP.
 References
 ==========
 
-[RFC2119]: <http://www.ietf.org/rfc/rfc2119.txt>
-: RFC2119
-
-[RFC4627]: <http://www.ietf.org/rfc/rfc4627.txt>
-: RFC4627
+ * [RFC2119]
+[RFC2119]: <http://www.ietf.org/rfc/rfc2119.txt> "RFC2119"
+ * [RFC4627]
+[RFC4627]: <http://www.ietf.org/rfc/rfc4627.txt> "RFC4627"
 
