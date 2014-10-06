@@ -164,6 +164,54 @@ to ISO 8601.
 
 GPS or Galileo time is only valid for fields called 'gps_time' or 'galileo_time'.
 
+
+Usage
+=====
+
+Applications using OGRP for input or output should define the supported messages as [JSON Schema](http://json-schema.org/).
+An example for a PVT application's minimum input data could be:
+
+    {
+        "id": "http://example.org/pvt-input-schema#"
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "Minimum schema for a PVT application"
+        "type": "object",
+        "properties": {
+            "protocol": { "type": "string" },
+            "id": { "type": "string" },
+            "timestamp": { "$ref": "http://ogrp.org/definitions/timestamp" },
+            "channel_measurements": {
+                "type": "object",
+                "properties": {
+                    "satellite_id": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                    "pseudorange": {
+                        "type": "number"
+                    }
+                }
+            },
+            "satellites": {
+                "type": "object",
+                "properties": {
+                    "satellite_id": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                    "position": {
+                        "type": "object",
+                        "properties": {
+                            "x": { "type": "number" },
+                            "y": { "type": "number" },
+                            "z": { "type": "number" },
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 Security considerations
 =======================
 
