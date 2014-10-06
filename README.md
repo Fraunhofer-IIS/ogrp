@@ -82,13 +82,13 @@ An OGRP message is composed of one JSON object. Two mandatory fields
 exist
 
     msg = {
-        'protocol': protocol,
-        'id': id,
+        "protocol": protocol,
+        "id": id,
         ...
     }
 
-    protocol = 'OGRP1'
-    id = string ; lower-case, underscore separated id, e.g. 'measurement', ...
+    protocol = "OGRP1"
+    id = string ; lower-case, underscore separated id, e.g. "measurement", ...
 
 The additional content in the message is dependant on the message id.
 Optional fields are allowed and must be ignored by parsers if unknown
@@ -100,37 +100,37 @@ processing and data output.
 Example definitions
 -------------------
 
-A message of id 'raw\_meas' for raw measurements of a GNSS receiver,
+A message of id "raw\_meas" for raw measurements of a GNSS receiver,
 e.g. including pseudorange and carrier phase measurements for multiple
 satellites on different channels, can look like this:
 
     measurement = {
-        'protocol': protocol,
-        'id': 'measurement',
-        'sw_version': int / hex,
-        'timestamp': float,
-        'time_status': time_status,
-        'nr_ch_meas': int,
-        'ch_meas': [*ch_meas]
+        "protocol": protocol,
+        "id": "measurement",
+        "sw_version": int / hex,
+        "timestamp": float,
+        "time_status": time_status,
+        "nr_ch_meas": int,
+        "ch_meas": [*ch_meas]
         }
 
-    channel_state = 'IDLE' / 'SEARCHING' / 'PULL_IN' / 'SEARCHING' / 'SYNCED'
+    channel_state = "IDLE" / "SEARCHING" / "PULL_IN" / "SEARCHING" / "SYNCED"
 
     ch_meas = {
-        'gnss': string, ; 'GPS' / 'GPS' / ...
-        'sat_id': int,
-        'signal_type': string, ; 'L1CA' / 'L5I' / 'E5aI' / ...
-        'channel_state': channel_state
-        'doppler': float,
-        'carrier_phase': float,
-        'snr': float,
-        'locktime': float,
-        'pseudorange': float,
-        'code_phase': float,
-        'ch_nr': int
+        "gnss": string, ; "GPS" / "GPS" / ...
+        "sat_id": int,
+        "signal_type": string, ; "L1CA" / "L5I" / "E5aI" / ...
+        "channel_state": channel_state
+        "doppler": float,
+        "carrier_phase": float,
+        "snr": float,
+        "locktime": float,
+        "pseudorange": float,
+        "code_phase": float,
+        "ch_nr": int
     }
 
-    time_status = 'FREE_RUNNING' / 'GPS_SYNCED' / ...
+    time_status = "FREE_RUNNING" / "GPS_SYNCED" / ...
 
 
 Key naming
