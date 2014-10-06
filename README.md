@@ -88,14 +88,16 @@ Message specification
 An OGRP message is composed of one JSON object. Two mandatory fields
 exist
 
-    msg = {
-        "protocol": protocol,
-        "id": id,
-        ...
-    }
+```
+msg = {
+    "protocol": protocol,
+    "id": id,
+    ...
+}
 
-    protocol = "OGRP1"
-    id = string ; lower-case, underscore separated id, e.g. "measurement", ...
+protocol = "OGRP1"
+id = string ; lower-case, underscore separated id, e.g. "measurement", ...
+```
 
 The additional content in the message is dependant on the message id.
 Optional fields are allowed and must be ignored by parsers if unknown
@@ -108,33 +110,34 @@ A message of id 'measurement' for raw measurements of a GNSS receiver,
 e.g. including pseudorange and carrier phase measurements for multiple
 satellites on different channels, can look like this:
 
-    measurement = {
-        "protocol": protocol,
-        "id": "measurement",
-        "sw_version": int / hex,
-        "timestamp": float / string, ; (see Representing time and date)
-        "time_status": time_status,
-        "channel_measurement": [*channel_measurement]
-        }
+```
+measurement = {
+    "protocol": protocol,
+    "id": "measurement",
+    "sw_version": int / hex,
+    "timestamp": float / string, ; (see Representing time and date)
+    "time_status": time_status,
+    "channel_measurement": [*channel_measurement]
+}
 
-    time_status = string, ; "FREE_RUNNING" / "COARSE" / "GPS_SYNCED" / ...
+time_status = string, ; "FREE_RUNNING" / "COARSE" / "GPS_SYNCED" / ...
 
-    channel_measurement = {
-        "gnss": string, ; "GPS" / "GALILEO" / "GLONASS" / "SBAS" / ...
-        "satellite_id": int, ; starting at 1
-        "signal_type": string, ; "L1CA" / "L5I" / "E5aI" / ...
-        "channel_state": channel_state,
-        "doppler": float, ; (Hz)
-        "carrier_phase": float, ; (cycles)
-        "signal_to_noise_ratio": float, ; (dB)
-        "locktime": float, ; (seconds)
-        "pseudorange": float, ; (meters)
-        "code_phase": float, ; (chips)
-        "channel_number": int ; starting at 0
-    }
+channel_measurement = {
+    "gnss": string, ; "GPS" / "GALILEO" / "GLONASS" / "SBAS" / ...
+    "satellite_id": int, ; starting at 1
+    "signal_type": string, ; "L1CA" / "L5I" / "E5aI" / ...
+    "channel_state": channel_state,
+    "doppler": float, ; (Hz)
+    "carrier_phase": float, ; (cycles)
+    "signal_to_noise_ratio": float, ; (dB)
+    "locktime": float, ; (seconds)
+    "pseudorange": float, ; (meters)
+    "code_phase": float, ; (chips)
+    "channel_number": int ; starting at 0
+}
 
-    channel_state = string, ; "IDLE" / "SEARCHING" / "PULL_IN" / "LOCKED" / "SYNCED"
-
+channel_state = string, ; "IDLE" / "SEARCHING" / "PULL_IN" / "LOCKED" / "SYNCED"
+```
 
 Key naming
 ----------
@@ -171,47 +174,48 @@ Usage
 Applications using OGRP for input or output should define the supported messages as [JSON Schema](http://json-schema.org/).
 An example for a PVT application's minimum input data could be:
 
-    {
-        "id": "http://example.org/pvt-input-schema#"
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "description": "Minimum schema for a PVT application"
-        "type": "object",
-        "properties": {
-            "protocol": { "type": "string" },
-            "id": { "type": "string" },
-            "timestamp": { "$ref": "http://ogrp.org/definitions/timestamp" },
-            "channel_measurements": {
-                "type": "object",
-                "properties": {
-                    "satellite_id": {
-                        "type": "integer",
-                        "minimum": 1
-                    }
-                    "pseudorange": {
-                        "type": "number"
-                    }
+```JSON
+{
+    "id": "http://example.org/pvt-input-schema#"
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Minimum schema for a PVT application"
+    "type": "object",
+    "properties": {
+        "protocol": { "type": "string" },
+        "id": { "type": "string" },
+        "timestamp": { "$ref": "http://ogrp.org/definitions/timestamp" },
+        "channel_measurements": {
+            "type": "object",
+            "properties": {
+                "satellite_id": {
+                    "type": "integer",
+                    "minimum": 1
                 }
-            },
-            "satellites": {
-                "type": "object",
-                "properties": {
-                    "satellite_id": {
-                        "type": "integer",
-                        "minimum": 1
-                    }
-                    "position": {
-                        "type": "object",
-                        "properties": {
-                            "x": { "type": "number" },
-                            "y": { "type": "number" },
-                            "z": { "type": "number" },
-                        }
+                "pseudorange": {
+                    "type": "number"
+                }
+            }
+        },
+        "satellites": {
+            "type": "object",
+            "properties": {
+                "satellite_id": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+                "position": {
+                    "type": "object",
+                    "properties": {
+                        "x": { "type": "number" },
+                        "y": { "type": "number" },
+                        "z": { "type": "number" },
                     }
                 }
             }
         }
     }
-
+}
+```
 Security considerations
 =======================
 
