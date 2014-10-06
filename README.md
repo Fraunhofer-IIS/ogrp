@@ -76,6 +76,12 @@ Consider the following:
 
 -   Add references: to other documents, protocols, and so on.
 
+-   Use list-of-structs instead of struct-of-lists.
+
+-   Use explicit and unambiguous key names.
+
+-   Use lower-case, underscore separated key names.
+
 Message specification
 =====================
 
@@ -95,13 +101,10 @@ The additional content in the message is dependant on the message id.
 Optional fields are allowed and must be ignored by parsers if unknown
 (according to JSON).
 
-In general "list-of-struct" are preferred over "struct-of-list" as this eases
-processing and data output.
-
 Example definitions
 -------------------
 
-A message of id "raw\_meas" for raw measurements of a GNSS receiver,
+A message of id 'measurement' for raw measurements of a GNSS receiver,
 e.g. including pseudorange and carrier phase measurements for multiple
 satellites on different channels, can look like this:
 
@@ -109,29 +112,28 @@ satellites on different channels, can look like this:
         "protocol": protocol,
         "id": "measurement",
         "sw_version": int / hex,
-        "timestamp": float,
+        "timestamp": float / string, ; (see Representing time and date)
         "time_status": time_status,
-        "nr_ch_meas": int,
-        "ch_meas": [*ch_meas]
+        "channel_measurement": [*channel_measurement]
         }
 
-    channel_state = "IDLE" / "SEARCHING" / "PULL_IN" / "SEARCHING" / "SYNCED"
+    time_status = string, ; "FREE_RUNNING" / "COARSE" / "GPS_SYNCED" / ...
 
-    ch_meas = {
-        "gnss": string, ; "GPS" / "GPS" / ...
-        "sat_id": int,
+    channel_measurement = {
+        "gnss": string, ; "GPS" / "GALILEO" / "GLONASS" / "SBAS" / ...
+        "satellite_id": int, ; starting at 1
         "signal_type": string, ; "L1CA" / "L5I" / "E5aI" / ...
-        "channel_state": channel_state
-        "doppler": float,
-        "carrier_phase": float,
-        "snr": float,
-        "locktime": float,
-        "pseudorange": float,
-        "code_phase": float,
-        "ch_nr": int
+        "channel_state": channel_state,
+        "doppler": float, ; (Hz)
+        "carrier_phase": float, ; (cycles)
+        "signal_to_noise_ratio": float, ; (dB)
+        "locktime": float, ; (seconds)
+        "pseudorange": float, ; (meters)
+        "code_phase": float, ; (chips)
+        "channel_number": int ; starting at 0
     }
 
-    time_status = "FREE_RUNNING" / "GPS_SYNCED" / ...
+    channel_state = string, ; "IDLE" / "SEARCHING" / "PULL_IN" / "LOCKED" / "SYNCED"
 
 
 Key naming
@@ -142,8 +144,25 @@ Names of keys should be explicit and unambiguous.
 If desired, abbreviations can be used but should be properly defined. Both
 variants of a key, abbreviated and non-abbreviated should be supported.
 
-Example: "ch\_meas" --> "channel\_measurement"
+Here is the list of currently defined abbreviations:
 
+| full name             | abbreviation |
+|-----------------------|--------------|
+| channel_measurement   | ch_meas      |
+| channel_number        | ch_nr        |
+| pseudorange           | psr          |
+| satellite_id          | sat_id       |
+| signal_to_noise_ratio | snr          |
+
+
+Representing time and date
+--------------------------
+
+Fields called 'timestamp' can hold times specified in UNIX time or ISO 8601. So if the JSON
+type is float it's a UNIX time referred to UTC. If the JSON type is string, it must conform
+to ISO 8601.
+
+GPS or Galileo time is only valid for fields called 'gps_time' or 'galileo_time'.
 
 Security considerations
 =======================
