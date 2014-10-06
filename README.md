@@ -176,9 +176,9 @@ An example for a PVT application's minimum input data could be:
 
 ```JSON
 {
-    "id": "http://example.org/pvt-input-schema#"
+    "id": "http://example.org/pvt-input-schema#",
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "description": "Minimum schema for a PVT application"
+    "description": "Minimum schema for a PVT application",
     "type": "object",
     "properties": {
         "protocol": { "type": "string" },
@@ -190,7 +190,7 @@ An example for a PVT application's minimum input data could be:
                 "satellite_id": {
                     "type": "integer",
                     "minimum": 1
-                }
+                },
                 "pseudorange": {
                     "type": "number"
                 }
@@ -202,13 +202,13 @@ An example for a PVT application's minimum input data could be:
                 "satellite_id": {
                     "type": "integer",
                     "minimum": 1
-                }
+                },
                 "position": {
                     "type": "object",
                     "properties": {
                         "x": { "type": "number" },
                         "y": { "type": "number" },
-                        "z": { "type": "number" },
+                        "z": { "type": "number" }
                     }
                 }
             }
