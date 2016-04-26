@@ -431,7 +431,179 @@
                 "additionalProperties":false
             },
             "uniqueItems":true
-        }
+        },
+        "tracking_init":{
+            "type":"object",
+            "description":"Information about configuration of the hardware channel for external tracking loops",
+            "properties":{
+                "hw_channel_id":{
+                    "type":"integer",
+                    "description":"Unique ID of the hardware channel",
+                },
+                "carrier_doppler":{
+                    "type":"number",
+                    "description":"Carrier doppler from acquisition (Hz)",
+                },
+                "code_doppler":{
+                    "type":"number",
+                    "description":"Code doppler from acquisition (chips/s)",
+                },
+                "early_late_spacing":{
+                    "type":"number",
+                    "description":"Early late spacing of the hardware channel (chips)",
+                },
+                "integration_time":{
+                    "type":"number",
+                    "description":"Integration time of the correlators (s)",
+                },
+                "acf_slope":{
+                    "type":"number",
+                    "description":"Slope of the autocorrelation function (chip/chip)",
+                },
+                "dll_hard_limiter":{
+                    "type":"number",
+                    "description":"Recommended hard limitation for DLL discriminator output (chips)",
+                },
+            },
+            "required":["hw_channel_id","carrier_doppler","code_doppler","early_late_spacing","integration_time","acf_slope"],
+            "additionalProperties":false,
+        },
+        "correlation_values":{
+            "type":"object",
+            "description":"I&D values of a hardware channel",
+            "properties":{
+                "hw_channel_id":{
+                    "type":"integer",
+                    "description":"Unique ID of the hardware channel",
+                },
+                "hw_timestamp":{
+                    "type":"integer",
+                    "description":"Hardware timestamp (clock ticks, overflow at 2^32)",
+                },
+                "epoch":{
+                    "type":"number",
+                    "description":"Epochs since hardware channel start (epochs)",
+                },
+                "carrier_doppler":{
+                    "type":"number",
+                    "description":"Last carrier doppler (Hz)",
+                },
+                "code_doppler":{
+                    "type":"number",
+                    "description":"Last code doppler (chips/s)",
+                },
+                "very_early":{
+                    "type":"object",
+                    "description":"Correlation value at very early correlation point",
+                    "properties":{
+                        "i":{
+                            "type":"number",
+                            "description":"Real part of the correlation",
+                        },
+                        "q":{
+                            "type":"number",
+                            "description":"Imaginary part of the correlation",
+                        }
+                    },
+                    "required":["i","q"],
+                    "additionalProperties":false,
+                },
+                "early":{
+                    "type":"object",
+                    "description":"Correlation value at early correlation point",
+                    "properties":{
+                        "i":{
+                            "type":"number",
+                            "description":"Real part of the correlation",
+                        },
+                        "q":{
+                            "type":"number",
+                            "description":"Imaginary part of the correlation",
+                        }
+                    },
+                    "required":["i","q"],
+                    "additionalProperties":false,
+                },
+                "prompt":{
+                    "type":"object",
+                    "description":"Correlation value at prompt correlation point",
+                    "properties":{
+                        "i":{
+                            "type":"number",
+                            "description":"Real part of the correlation",
+                        },
+                        "q":{
+                            "type":"number",
+                            "description":"Imaginary part of the correlation",
+                        }
+                    },
+                    "required":["i","q"],
+                    "additionalProperties":false,
+                },
+                "late":{
+                    "type":"object",
+                    "description":"Correlation value at late correlation point",
+                    "properties":{
+                        "i":{
+                            "type":"number",
+                            "description":"Real part of the correlation",
+                        },
+                        "q":{
+                            "type":"number",
+                            "description":"Imaginary part of the correlation",
+                        }
+                    },
+                    "required":["i","q"],
+                    "additionalProperties":false,
+                },
+                "very_late":{
+                    "type":"object",
+                    "description":"Correlation value at very late correlation point",
+                    "properties":{
+                        "i":{
+                            "type":"number",
+                            "description":"Real part of the correlation",
+                        },
+                        "q":{
+                            "type":"number",
+                            "description":"Imaginary part of the correlation",
+                        }
+                    },
+                    "required":["i","q"],
+                    "additionalProperties":false,
+                },
+            },
+            "required":["hw_channel_id","hw_timestamp","epoch","early","prompt","late"],
+            "additionalProperties":false,
+        },
+        "control_values":{
+            "type":"object",
+            "description":"Code and carrier values to control a hardware channel",
+            "properties":{
+                "hw_timestamp":{
+                    "type":"integer",
+                    "description":"Should be the hw_timestamp from the correlation_values message to check the age of the control values (clock ticks)",
+                },
+                "hw_channel_id":{
+                    "type":"integer",
+                    "description":"Unique ID of the hardware channel",
+                },
+                "carrier_doppler":{
+                    "type":"integer",
+                    "description":"Carrier doppler from tracking (Hz)",
+                },
+                "code_doppler":{
+                    "type":"integer",
+                    "description":"Code doppler from tracking (chips/s)",
+                },
+                "lock_lost":{
+                    "type":"boolean",
+                    "description":"True if tracking of the satellite is lost",
+                },
+            },
+            "required":["hw_timestamp","hw_channel_id","carrier_doppler","code_doppler","lock_lost"],
+            "additionalProperties":false,
+        },
     },
     "required":["id","timestamp","protocol"],
     "additionalProperties":false
