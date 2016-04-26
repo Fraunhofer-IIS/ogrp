@@ -250,7 +250,6 @@
                         "description":"Corrections to orbital E, cis (radian)"
                     }
                 },
-                "required":0,
                 "required":["satellite_id","reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
                 "additionalProperties":false
             },
