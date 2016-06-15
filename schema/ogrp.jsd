@@ -19,6 +19,10 @@
             "type":"number",
             "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
         },
+        "hw_timestamp":{
+            "type":"integer",
+            "description":"Hardware timestamp, which is required for external tracking (clock ticks, overflow at 2^32)",
+        },
         "sw_version":{
             "type":"number"
         },
@@ -475,10 +479,6 @@
                     "type":"integer",
                     "description":"Unique ID of the hardware channel",
                 },
-                "hw_timestamp":{
-                    "type":"integer",
-                    "description":"Hardware timestamp (clock ticks, overflow at 2^32)",
-                },
                 "epoch":{
                     "type":"number",
                     "description":"Epochs since hardware channel start (epochs)",
@@ -572,17 +572,13 @@
                     "additionalProperties":false,
                 },
             },
-            "required":["hw_channel_id","hw_timestamp","epoch","early","prompt","late"],
+            "required":["hw_channel_id","epoch","early","prompt","late"],
             "additionalProperties":false,
         },
         "control_values":{
             "type":"object",
             "description":"Code and carrier values to control a hardware channel",
             "properties":{
-                "hw_timestamp":{
-                    "type":"integer",
-                    "description":"Should be the hw_timestamp from the correlation_values message to check the age of the control values (clock ticks)",
-                },
                 "hw_channel_id":{
                     "type":"integer",
                     "description":"Unique ID of the hardware channel",
@@ -600,7 +596,7 @@
                     "description":"True if tracking of the satellite is lost",
                 },
             },
-            "required":["hw_timestamp","hw_channel_id","carrier_doppler","code_doppler","lock_lost"],
+            "required":["hw_channel_id","carrier_doppler","code_doppler","lock_lost"],
             "additionalProperties":false,
         },
     },
