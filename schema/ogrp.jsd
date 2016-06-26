@@ -275,14 +275,6 @@
         "pvt_calculation":{
             "type":"object",
             "properties":{
-                "timestamp_meas":{
-                    "type":"number",
-                    "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
-                },
-                "timestamp_system":{
-                    "enum":["GPS","GLONASS","GALILEO"],
-                    "description":"GNSS system of bias for timestamp"
-                },
                 "coordinate_system":{
                     "enum":["ECEF","WGS84"],
                     "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
@@ -310,7 +302,7 @@
                     "description":"The calculated position"
                 }
             },
-            "required":["timestamp_meas","timestamp_system","coordinate_system","precision","position",],
+            "required":["coordinate_system","precision","position",],
             "additionalProperties":false
         },
         "utc_parameter":{
@@ -354,22 +346,6 @@
                         "type":"integer",
                         "minimum":1,
                         "description":"The satellite ID (PRN)"
-                    },
-                    "timestamp_meas":{
-                        "type":"number",
-                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
-                    },
-                    "timestamp_gps":{
-                        "type":"number",
-                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
-                    },
-                    "timestamp_glonass":{
-                        "type":"number",
-                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
-                    },
-                    "timestamp_galileo":{
-                        "type":"number",
-                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
                     },
                     "channel_state":{
                         "enum":["IDLE","SEARCHING","PULL_IN","LOCKED","SYNCED"]
