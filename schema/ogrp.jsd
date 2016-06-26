@@ -310,7 +310,7 @@
                     "description":"The calculated position"
                 }
             },
-            "required":["timestamp_meas","timestamp_system"],
+            "required":["timestamp_meas","timestamp_system","coordinate_system","precision","position",],
             "additionalProperties":false
         },
         "utc_parameter":{
