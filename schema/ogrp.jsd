@@ -58,303 +58,279 @@
             }
         },
         "glonass_ephemeris":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "satellite_id":{
-                        "type":"integer",
-                        "minimum":1,
-                        "description":"The satellite ID (PRN)"
-                    },
-                    "freqnum":{
-                        "type":"integer",
-                        "description":"Frequency channel number (-7...24)"
-                    },
-                    "reference_time":{
-                        "type":"integer",
-                        "description":"Reference time of ephemeris (s)"
-                    },
-                    "reference_day":{
-                        "type":"integer",
-                        "description":"Day of reference time of ephemeris (day in 4 year block)"
-                    },
-                    "healthy":{
-                        "type":"boolean",
-                        "description":"True means satelitte is healthy, taken from signal"
-                    },
-                    "healthy1":{
-                        "type":"boolean",
-                        "description":"True means satelitte is healthy, taken from almanac"
-                    },
-                    "healthy2":{
-                        "type":"boolean",
-                        "description":"True means satelitte is healthy, own diagnostic"
-                    },
-                    "age":{
-                        "type":"number",
-                        "description":"Ephemeris, age of data (days)"
-                    },
-                    "coords":{
-                        "type":"array",
-                        "numItems":3,
-                        "description":"Ephemeris, coordinates (km)",
-                        "items":{
-                            "type":"number"
-                        }
-                    },
-                    "velocities":{
-                        "type":"array",
-                        "numItems":3,
-                        "description":"Ephemeris, velocities (km/s)",
-                        "items":{
-                            "type":"number"
-                        }
-                    },
-                    "accelarations":{
-                        "type":"array",
-                        "numItems":3,
-                        "description":"Ephemeris, accelarations (km/s*s)",
-                        "items":{
-                            "type":"number"
-                        }
-                    },
-                    "tau_sys":{
-                        "type":"number",
-                        "description":"Clock, time correction to glonass time scale (s)"
-                    },
-                    "tau":{
-                        "type":"number",
-                        "description":"Clock, time correction to sat-clock (s)"
-                    },
-                    "gamma":{
-                        "type":"number",
-                        "description":"Clock, sat-clock offset rate (s/s)"
+            "type":"object",
+            "properties":{
+                "satellite_id":{
+                    "type":"integer",
+                    "minimum":1,
+                    "description":"The satellite ID (PRN)"
+                },
+                "freqnum":{
+                    "type":"integer",
+                    "description":"Frequency channel number (-7...24)"
+                },
+                "reference_time":{
+                    "type":"integer",
+                    "description":"Reference time of ephemeris (s)"
+                },
+                "reference_day":{
+                    "type":"integer",
+                    "description":"Day of reference time of ephemeris (day in 4 year block)"
+                },
+                "healthy":{
+                    "type":"boolean",
+                    "description":"True means satelitte is healthy, taken from signal"
+                },
+                "healthy1":{
+                    "type":"boolean",
+                    "description":"True means satelitte is healthy, taken from almanac"
+                },
+                "healthy2":{
+                    "type":"boolean",
+                    "description":"True means satelitte is healthy, own diagnostic"
+                },
+                "age":{
+                    "type":"number",
+                    "description":"Ephemeris, age of data (days)"
+                },
+                "coords":{
+                    "type":"array",
+                    "numItems":3,
+                    "description":"Ephemeris, coordinates (km)",
+                    "items":{
+                        "type":"number"
                     }
                 },
-                "required":["satellite_id","reference_time","reference_day","coords","velocities","accelarations"],
-                "additionalProperties":false
+                "velocities":{
+                    "type":"array",
+                    "numItems":3,
+                    "description":"Ephemeris, velocities (km/s)",
+                    "items":{
+                        "type":"number"
+                    }
+                },
+                "accelarations":{
+                    "type":"array",
+                    "numItems":3,
+                    "description":"Ephemeris, accelarations (km/s*s)",
+                    "items":{
+                        "type":"number"
+                    }
+                },
+                "tau_sys":{
+                    "type":"number",
+                    "description":"Clock, time correction to glonass time scale (s)"
+                },
+                "tau":{
+                    "type":"number",
+                    "description":"Clock, time correction to sat-clock (s)"
+                },
+                "gamma":{
+                    "type":"number",
+                    "description":"Clock, sat-clock offset rate (s/s)"
+                }
             },
-            "uniqueItems":true
+            "required":["satellite_id","reference_time","reference_day","coords","velocities","accelarations"],
+            "additionalProperties":false
         },
         "ephemeris":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "gnss":{
-                        "enum":["GPS","GALILEO"],
-                        "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
-                    },
-                    "satellite_id":{
-                        "type":"integer",
-                        "minimum":1,
-                        "description":"The satellite ID (PRN)"
-                    },
-                    "clock_issue":{
-                        "type":"integer",
-                        "description":"Subframe 1, issue of data, clock"
-                    },
-                    "satellite_health":{
-                        "type":"integer",
-                        "description":"Subframe 1, satellite health"
-                    },
-                    "clock_reference":{
-                        "type":"integer",
-                        "description":"Subframe 1, clock Data reference time (s)"
-                    },
-                    "week_number":{
-                        "type":"integer",
-                        "description":"Subframe 1, GPS week number"
-                    },
-                    "group_delay":{
-                        "type":"number",
-                        "description":"Subframe 1, estimated group delay differential (s)"
-                    },
-                    "af_2":{
-                        "type":"number",
-                        "description":"Subframe 1, polynomal coefficient (s/s*s)"
-                    },
-                    "af_1":{
-                        "type":"number",
-                        "description":"Subframe 1, polynomal coefficient (s/s)"
-                    },
-                    "af_0":{
-                        "type":"number",
-                        "description":"Subframe 1, polynomal coefficient (s)"
-                    },
-                    "ephemeris_reference":{
-                        "type":"integer",
-                        "description":"Subframe 2 and 3, ephemeris reference time (s)"
-                    },
-                    "ephemeris_issue":{
-                        "type":"integer",
-                        "description":"Subframe 2 and 3, issue of data, ephemeris"
-                    },
-                    "root_a":{
-                        "type":"number",
-                        "description":"Keplerian, root_a (m^1/2)"
-                    },
-                    "ecc":{
-                        "type":"number",
-                        "description":"Keplerian, ecc"
-                    },
-                    "m_0":{
-                        "type":"number",
-                        "description":"Keplerian, m_0 (semi_circles)"
-                    },
-                    "omega_0":{
-                        "type":"number",
-                        "description":"Keplerian, omega_0 (semi_circles)"
-                    },
-                    "inc_0":{
-                        "type":"number",
-                        "description":"Keplerian, inc_0 (semi_circles)"
-                    },
-                    "arg_per":{
-                        "type":"number",
-                        "description":"Keplerian, arg_per (semi_circles)"
-                    },
-                    "deln":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, deln (semi_circles/s)"
-                    },
-                    "omega_dot":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, omega_dot (semi_circles/s)"
-                    },
-                    "inc_dot":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, inc_dot (semi_circles/s)"
-                    },
-                    "crc":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, crc (m)"
-                    },
-                    "crs":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, crs (m)"
-                    },
-                    "cuc":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, cuc (radian)"
-                    },
-                    "cus":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, cus (radian)"
-                    },
-                    "cic":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, cic (radian)"
-                    },
-                    "cis":{
-                        "type":"number",
-                        "description":"Corrections to orbital E, cis (radian)"
-                    }
+            "type":"object",
+            "properties":{
+                "gnss":{
+                    "enum":["GPS","GALILEO"],
+                    "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
                 },
-                "required":["satellite_id","reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
-                "additionalProperties":false
+                "satellite_id":{
+                    "type":"integer",
+                    "minimum":1,
+                    "description":"The satellite ID (PRN)"
+                },
+                "clock_issue":{
+                    "type":"integer",
+                    "description":"Subframe 1, issue of data, clock"
+                },
+                "satellite_health":{
+                    "type":"integer",
+                    "description":"Subframe 1, satellite health"
+                },
+                "clock_reference":{
+                    "type":"integer",
+                    "description":"Subframe 1, clock Data reference time (s)"
+                },
+                "week_number":{
+                    "type":"integer",
+                    "description":"Subframe 1, GPS week number"
+                },
+                "group_delay":{
+                    "type":"number",
+                    "description":"Subframe 1, estimated group delay differential (s)"
+                },
+                "af_2":{
+                    "type":"number",
+                    "description":"Subframe 1, polynomal coefficient (s/s*s)"
+                },
+                "af_1":{
+                    "type":"number",
+                    "description":"Subframe 1, polynomal coefficient (s/s)"
+                },
+                "af_0":{
+                    "type":"number",
+                    "description":"Subframe 1, polynomal coefficient (s)"
+                },
+                "ephemeris_reference":{
+                    "type":"integer",
+                    "description":"Subframe 2 and 3, ephemeris reference time (s)"
+                },
+                "ephemeris_issue":{
+                    "type":"integer",
+                    "description":"Subframe 2 and 3, issue of data, ephemeris"
+                },
+                "root_a":{
+                    "type":"number",
+                    "description":"Keplerian, root_a (m^1/2)"
+                },
+                "ecc":{
+                    "type":"number",
+                    "description":"Keplerian, ecc"
+                },
+                "m_0":{
+                    "type":"number",
+                    "description":"Keplerian, m_0 (semi_circles)"
+                },
+                "omega_0":{
+                    "type":"number",
+                    "description":"Keplerian, omega_0 (semi_circles)"
+                },
+                "inc_0":{
+                    "type":"number",
+                    "description":"Keplerian, inc_0 (semi_circles)"
+                },
+                "arg_per":{
+                    "type":"number",
+                    "description":"Keplerian, arg_per (semi_circles)"
+                },
+                "deln":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, deln (semi_circles/s)"
+                },
+                "omega_dot":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, omega_dot (semi_circles/s)"
+                },
+                "inc_dot":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, inc_dot (semi_circles/s)"
+                },
+                "crc":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, crc (m)"
+                },
+                "crs":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, crs (m)"
+                },
+                "cuc":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, cuc (radian)"
+                },
+                "cus":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, cus (radian)"
+                },
+                "cic":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, cic (radian)"
+                },
+                "cis":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, cis (radian)"
+                }
             },
-            "uniqueItems":true
+            "required":["satellite_id","reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
+            "additionalProperties":false
         },
         "ionosphere":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "amplitude":{
-                        "type":"array",
-                        "numItems":4,
-                        "description":"Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
-                        "items":{
-                            "type":"number"
-                        }
-                    },
-                    "period":{
-                        "type":"array",
-                        "numItems":4,
-                        "description":"Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
-                        "items":{
-                            "type":"number"
-                        }
+            "type":"object",
+            "properties":{
+                "amplitude":{
+                    "type":"array",
+                    "numItems":4,
+                    "description":"Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
+                    "items":{
+                        "type":"number"
                     }
                 },
-                "required":["amplitude","period"],
-                "additionalProperties":false
+                "period":{
+                    "type":"array",
+                    "numItems":4,
+                    "description":"Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
+                    "items":{
+                        "type":"number"
+                    }
+                }
             },
-            "uniqueItems":true
+            "required":["amplitude","period"],
+            "additionalProperties":false
         },
         "pvt_calculation":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "timestamp_meas":{
-                        "type":"number",
-                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
-                    },
-                    "timestamp_system":{
-                        "enum":["GPS","GLONASS","GALILEO"],
-                        "description":"GNSS system of bias for timestamp"
-                    },
-                    "coordinate_system":{
-                        "enum":["ECEF","WGS84"],
-                        "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
-                    },
-                    "precision":{
-                        "enum":["2D","3D","NOT_FIX"],
-                        "description":"Calculation precision "
-                    },
-                    "position":{
-                        "type":"object",
-                        "properties":{
-                            "x":{
-                                "type":"number",
-                                "description":"Depending on coordinate_systems"
-                            },
-                            "y":{
-                                "type":"number",
-                                "description":"Depending on coordinate_systems"
-                            },
-                            "z":{
-                                "type":"number",
-                                "description":"Depending on coordinate_systems"
-                            }
-                        },
-                        "description":"The calculated position"
-                    }
+            "type":"object",
+            "properties":{
+                "timestamp_meas":{
+                    "type":"number",
+                    "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
                 },
-                "required":["timestamp_meas","timestamp_system"],
-                "additionalProperties":false
-            }
+                "timestamp_system":{
+                    "enum":["GPS","GLONASS","GALILEO"],
+                    "description":"GNSS system of bias for timestamp"
+                },
+                "coordinate_system":{
+                    "enum":["ECEF","WGS84"],
+                    "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
+                },
+                "precision":{
+                    "enum":["2D","3D","NOT_FIX"],
+                    "description":"Calculation precision "
+                },
+                "position":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"Depending on coordinate_systems"
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"Depending on coordinate_systems"
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"Depending on coordinate_systems"
+                        }
+                    },
+                    "description":"The calculated position"
+                }
+            },
+            "required":["timestamp_meas","timestamp_system"],
+            "additionalProperties":false
         },
         "utc_parameter":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "f_b":{
-                        "type":"number",
-                        "description":"Polynom constant value (s)"
-                    },
-                    "f_a":{
-                        "type":"number",
-                        "description":"Polynom linear value (s/s)"
-                    },
-                    "leap_seconds":{
-                        "type":"integer",
-                        "description":"Delta leap seconds (s)"
-                    }
+            "type":"object",
+            "properties":{
+                "f_b":{
+                    "type":"number",
+                    "description":"Polynom constant value (s)"
                 },
-                "required":["leap_seconds"],
-                "additionalProperties":false
+                "f_a":{
+                    "type":"number",
+                    "description":"Polynom linear value (s/s)"
+                },
+                "leap_seconds":{
+                    "type":"integer",
+                    "description":"Delta leap seconds (s)"
+                }
             },
-            "uniqueItems":true
+            "required":["leap_seconds"],
+            "additionalProperties":false
         },
         "channel_measurements":{
             "type":"array",
