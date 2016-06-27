@@ -305,6 +305,43 @@
             "required":["coordinate_system","precision","position",],
             "additionalProperties":false
         },
+        "satellite_receiver_relation":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "direction":{
+                        "type":"array",
+                        "description":"Normalized direction vector receiver-satellite in ECEF frame",
+                        "minItems":3,
+                        "maxItems":3,
+                        "items":{
+                            "type":"number",
+                        },
+                    },
+                    "range":{
+                        "type":"number",
+                        "description":"Real range between receiver and satellite after PVT (m)",
+                    },
+                    "range_rate":{
+                        "type":"number",
+                        "description":"Real range rate between receiver and satellite after PVT (m/s)",
+                    },
+                    "azimuth":{
+                        "type":"number",
+                        "description":"Azimuth of the satellite (degree)",
+                    },
+                    "elevation":{
+                        "type":"number",
+                        "description":"Elevation of the satellite",
+                    },
+                },
+                "required":[],
+                "additionalProperties":false,
+            },
+            "uniqueItems":true,
+        },
         "utc_parameter":{
             "type":"object",
             "properties":{
