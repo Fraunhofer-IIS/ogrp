@@ -275,12 +275,16 @@
         "pvt_calculation":{
             "type":"object",
             "properties":{
+                "number_of_satellites":{
+                    "type":"number",
+                    "description":"Number of satellites used in the PVT calculation",
+                },
                 "coordinate_system":{
                     "enum":["ECEF","WGS84"],
                     "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
                 },
                 "precision":{
-                    "enum":["2D","3D","NOT_FIX"],
+                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS",NOT_FIX"],
                     "description":"Calculation precision "
                 },
                 "position":{
@@ -300,7 +304,33 @@
                         }
                     },
                     "description":"The calculated position"
-                }
+                },
+                "velocity":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"ECEF",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"ECEF",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"ECEF",
+                        },
+                    },
+                    "description":"The calculated velocity",
+                },
+                "clock_bias":{
+                    "type":"double",
+                    "description":"The calculated clock error",
+                },
+                "clock_drift":{
+                    "type":"double",
+                    "description":"The variation of the clock error in the last PVT interval",
+                },
             },
             "required":["coordinate_system","precision","position",],
             "additionalProperties":false
