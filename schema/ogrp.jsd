@@ -440,6 +440,14 @@
                         "type":"number",
                         "description":"(seconds)"
                     },
+                    "frequency_lock":{
+                        "type":"double",
+                        "description":"frequency lock indicator"
+                    },
+                    "phase_lock":{
+                        "type":"double",
+                        "description":"phase lock indicator"
+                    },
                     "snr":{
                         "type":"number",
                         "description":"Signal to noise ratio"
