@@ -470,6 +470,10 @@
                     "type":"integer",
                     "description":"Unique ID of the hardware channel",
                 },
+                "carrier_frequency":{
+                    "type":"double",
+                    "description":"Carrier frequency of acquired signal (Hz)",
+                },
                 "carrier_doppler":{
                     "type":"number",
                     "description":"Carrier doppler from acquisition (Hz)",
