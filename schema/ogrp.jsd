@@ -305,7 +305,7 @@
             "required":["coordinate_system","precision","position",],
             "additionalProperties":false
         },
-        "satellite_receiver_relation":{
+        "satellite_info":{
             "type":"array",
             "minItems":1,
             "items":{
