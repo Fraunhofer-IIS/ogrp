@@ -341,6 +341,13 @@
             "items":{
                 "type":"object",
                 "properties":{
+                    "satellite_id":{
+                        "type":"integer",
+                        "description":"The satellite ID (PRN)"
+                    },
+                    "gnss":{
+                        "enum":["GPS","GALILEO","GLONASS","SBAS"]
+                    },
                     "direction":{
                         "type":"array",
                         "description":"Normalized direction vector receiver-satellite in ECEF frame",
@@ -350,13 +357,13 @@
                             "type":"number",
                         },
                     },
-                    "range":{
+                    "expected_range":{
                         "type":"number",
-                        "description":"Real range between receiver and satellite after PVT (m)",
+                        "description":"Expected range between receiver and satellite from PVT with errors (m)",
                     },
-                    "range_rate":{
+                    "expected_range_rate":{
                         "type":"number",
-                        "description":"Real range rate between receiver and satellite after PVT (m/s)",
+                        "description":"Expected range rate between receiver and satellite from PVT with errors (m/s)",
                     },
                     "azimuth":{
                         "type":"number",
@@ -367,7 +374,7 @@
                         "description":"Elevation of the satellite",
                     },
                 },
-                "required":[],
+                "required":["satellite_id", "gnss"],
                 "additionalProperties":false,
             },
             "uniqueItems":true,
