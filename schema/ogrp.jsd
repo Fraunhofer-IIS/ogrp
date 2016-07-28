@@ -463,6 +463,10 @@
                         "type":"number",
                         "description":"(meter)"
                     }
+                    "corrected_pseudo_range":{
+                        "type":"number",
+                        "description":"Pseudorange after applying clock and atmospheric correction (in meter)",
+                    },
                 },
                 "required":["carrier_phase","pseudo_range","satellite_id","gnss"],
                 "additionalProperties":false
