@@ -627,22 +627,37 @@
             "properties":{
                 "hw_channel_id":{
                     "type":"integer",
-                    "description":"Unique ID of the hardware channel",
-                },
-                "carrier_doppler":{
-                    "type":"integer",
-                    "description":"Carrier doppler from tracking (Hz)",
-                },
-                "code_doppler":{
-                    "type":"integer",
-                    "description":"Code doppler from tracking (chips/s)",
+                    "description":"Unique ID of the hardware channel, which sent the IQ values",
                 },
                 "lock_lost":{
                     "type":"boolean",
-                    "description":"True if tracking of the satellite is lost",
+                    "description":"True if tracking of the satellite is lost for the hardware channel, which sent the IQ values",
+                },
+                "value_list":{
+                    "type":"array",
+                    "minItems":0,
+                    "description":"List of control values for multiple channels",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "hw_channel_id":{
+                                "type":"integer",
+                                "description":"Unique ID of the hardware channel",
+                            },
+                            "carrier_doppler":{
+                                "type":"integer",
+                                "description":"Carrier doppler from tracking (Hz)",
+                            },
+                            "code_doppler":{
+                                "type":"integer",
+                                "description":"Code doppler from tracking (chips/s)",
+                            },
+                        },
+                        "required":["hw_channel_id","carrier_doppler","code_doppler"],
+                    },
                 },
             },
-            "required":["hw_channel_id","carrier_doppler","code_doppler","lock_lost"],
+            "required":["hw_channel_id","value_list","lock_lost"],
             "additionalProperties":false,
         },
     },
