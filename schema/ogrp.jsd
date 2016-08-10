@@ -357,13 +357,17 @@
                             "type":"number",
                         },
                     },
-                    "expected_range":{
+                    "expected_pseudorange":{
                         "type":"number",
                         "description":"Expected range between receiver and satellite from PVT with errors (m)",
                     },
+                    "expected_range":{
+                        "type":"number",
+                        "description":"Expected range between receiver and satellite from PVT (m)",
+                    },
                     "expected_range_rate":{
                         "type":"number",
-                        "description":"Expected range rate between receiver and satellite from PVT with errors (m/s)",
+                        "description":"Expected range rate between receiver and satellite from PVT (m/s)",
                     },
                     "azimuth":{
                         "type":"number",
