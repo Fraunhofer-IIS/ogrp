@@ -284,7 +284,7 @@
                     "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
                 },
                 "precision":{
-                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS","NOT_FIX"],
+                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS","NO_FIX"],
                     "description":"Calculation precision "
                 },
                 "position":{
