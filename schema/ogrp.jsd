@@ -331,6 +331,22 @@
                     "type":"number",
                     "description":"The variation of the clock error in the last PVT interval",
                 },
+                "hdop":{
+                    "type":"number",
+                    "description":"The horizontal dilution of precision",
+                },
+                "pdop":{
+                    "type":"number",
+                    "description":"The positional dilution of precision",
+                },
+                "tdop":{
+                    "type":"number",
+                    "description":"The time dilution of precision",
+                },
+                "gdop":{
+                    "type":"number",
+                    "description":"The geometric dilution of precision",
+                },
             },
             "required":["coordinate_system","precision","position",],
             "additionalProperties":false
