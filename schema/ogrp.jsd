@@ -284,7 +284,7 @@
                     "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
                 },
                 "precision":{
-                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS",NOT_FIX"],
+                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS","NOT_FIX"],
                     "description":"Calculation precision "
                 },
                 "position":{
@@ -324,11 +324,11 @@
                     "description":"The calculated velocity",
                 },
                 "clock_bias":{
-                    "type":"double",
+                    "type":"number",
                     "description":"The calculated clock error",
                 },
                 "clock_drift":{
-                    "type":"double",
+                    "type":"number",
                     "description":"The variation of the clock error in the last PVT interval",
                 },
             },
@@ -452,11 +452,11 @@
                         "description":"(seconds)"
                     },
                     "frequency_lock":{
-                        "type":"double",
+                        "type":"number",
                         "description":"frequency lock indicator"
                     },
                     "phase_lock":{
-                        "type":"double",
+                        "type":"number",
                         "description":"phase lock indicator"
                     },
                     "snr":{
@@ -466,7 +466,7 @@
                     "pseudo_range":{
                         "type":"number",
                         "description":"(meter)"
-                    }
+                    },
                     "corrected_pseudo_range":{
                         "type":"number",
                         "description":"Pseudorange after applying clock and atmospheric correction (in meter)",
@@ -486,7 +486,7 @@
                     "description":"Unique ID of the hardware channel",
                 },
                 "carrier_frequency":{
-                    "type":"double",
+                    "type":"number",
                     "description":"Carrier frequency of acquired signal (Hz)",
                 },
                 "carrier_doppler":{
@@ -530,9 +530,9 @@
                     "description":"Epochs since hardware channel start (epochs)",
                 },
                 "tow":{
-                    "type":"double",
+                    "type":"number",
                     "description":"Transmission time of the correlation values in seconds related to the beginning of the current week",
-                }
+                },
                 "carrier_doppler":{
                     "type":"number",
                     "description":"Last carrier doppler (Hz)",
