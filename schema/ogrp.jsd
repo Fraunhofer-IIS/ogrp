@@ -680,6 +680,136 @@
             "required":["hw_channel_id","value_list","lock_lost"],
             "additionalProperties":false,
         },
+        "imu_measurements":{
+            "type":"object",
+            "properties":{
+                "acceleration":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"(m/s^2)",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"(m/s^2)",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"(m/s^2)",
+                        },
+                    },
+                    "description":"The acceleration vector as reported from the IMU",
+                },
+                "angular_rate":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"(rad/s)",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"(rad/s)",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"(rad/s)",
+                        },
+                    },
+                    "description":"The angular rate as reported from the IMU",
+                },
+                "delta_theta":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"(rad)",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"(rad)",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"(rad)",
+                        },
+                    },
+                    "description":"Integral of angular rate over measurement interval",
+                },
+                "delta_velocity":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"(m/s)",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"(m/s)",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"(m/s)",
+                        },
+                    },
+                    "description":"Integral of acceleration over measurement interval"
+                },
+                "magnetic_field":{
+                    "type":"object",
+                    "properties":{
+                        "x":{
+                            "type":"number",
+                            "description":"(Gs)",
+                        },
+                        "y":{
+                            "type":"number",
+                            "description":"(Gs)",
+                        },
+                        "z":{
+                            "type":"number",
+                            "description":"(Gs)",
+                        },
+                    },
+                    "description":"The magnetic field as reported from the IMU",
+                },
+                "gps_correlation_timestamp":{
+                    "type":"object",
+                    "properties":{
+                        "gps_tow":{
+                            "type":"number",
+                            "description":"GPS time of week (s)",
+                        },
+                        "gps_week_number":{
+                            "type":"number",
+                            "description":"GPS week number",
+                        },
+                        "pps_beacon_good":{
+                            "type":"boolean",
+                            "description":"If set, GNSS PPS is present",
+                        },
+                        "gps_time_refresh":{
+                            "type":"number",
+                            "description":"PPS pulse counter",
+                        },
+                        "gps_time_initialized":{
+                            "type":"boolean",
+                            "description":"Is set once upon the first valid GPS time record",
+                        },
+                    },
+                    "required":["gnss_tow","gnss_week_number","pps_beacon_good","gps_time_refresh","gps_time_initialized"],
+                },
+                "pressure":{
+                    "type":"number",
+                    "description":"Pressure (hPa)",
+                },
+                "measurement_interval":{
+                    "type":"number",
+                    "description":"(s)",
+                }
+            },
+            "additionalProperties":false,
+        },
     },
     "required":["id","timestamp","protocol"],
     "additionalProperties":false
