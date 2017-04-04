@@ -195,31 +195,31 @@
                 },
                 "m_0":{
                     "type":"number",
-                    "description":"Keplerian, m_0 (semi_circles)"
+                    "description":"Keplerian, m_0 (radian)"
                 },
                 "omega_0":{
                     "type":"number",
-                    "description":"Keplerian, omega_0 (semi_circles)"
+                    "description":"Keplerian, omega_0 (radian)"
                 },
                 "inc_0":{
                     "type":"number",
-                    "description":"Keplerian, inc_0 (semi_circles)"
+                    "description":"Keplerian, inc_0 (radian)"
                 },
                 "arg_per":{
                     "type":"number",
-                    "description":"Keplerian, arg_per (semi_circles)"
+                    "description":"Keplerian, arg_per (radian)"
                 },
                 "deln":{
                     "type":"number",
-                    "description":"Corrections to orbital E, deln (semi_circles/s)"
+                    "description":"Corrections to orbital E, deln (radian/s)"
                 },
                 "omega_dot":{
                     "type":"number",
-                    "description":"Corrections to orbital E, omega_dot (semi_circles/s)"
+                    "description":"Corrections to orbital E, omega_dot (radian/s)"
                 },
                 "inc_dot":{
                     "type":"number",
-                    "description":"Corrections to orbital E, inc_dot (semi_circles/s)"
+                    "description":"Corrections to orbital E, inc_dot (radian/s)"
                 },
                 "crc":{
                     "type":"number",
