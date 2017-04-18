@@ -249,6 +249,74 @@
             "required":["satellite_id","ephemeris_reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
             "additionalProperties":false
         },
+        "almanac":{
+            "type":"object",
+            "properties":{
+                "gnss":{
+                    "enum":["GPS","GALILEO"],
+                    "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
+                },
+                "satellite_id":{
+                    "type":"integer",
+                    "minimum":1,
+                    "description":"The satellite ID (PRN)"
+                },
+                "almanac_issue":{
+                    "type":"integer",
+                    "description":"Issue of almanac data"
+                },
+                "satellite_health":{
+                    "type":"integer",
+                    "description":"Satellite health status"
+                },
+                "almanac_reference":{
+                    "type":"integer",
+                    "description":"Almanac reference time (s)"
+                },
+                "week_number":{
+                    "type":"integer",
+                    "description":"Almanac reference week number"
+                },
+                "af_1":{
+                    "type":"number",
+                    "description":"Satellite clock correction linear (s/s)"
+                },
+                "af_0":{
+                    "type":"number",
+                    "description":"Satellite clock correction bias (s)"
+                },
+                "root_a":{
+                    "type":"number",
+                    "description":"Keplerian, root_a (m^1/2)"
+                },
+                "ecc":{
+                    "type":"number",
+                    "description":"Keplerian, ecc"
+                },
+                "m_0":{
+                    "type":"number",
+                    "description":"Keplerian, m_0 (radian)"
+                },
+                "omega_0":{
+                    "type":"number",
+                    "description":"Keplerian, omega_0 (radian)"
+                },
+                "arg_per":{
+                    "type":"number",
+                    "description":"Keplerian, arg_per (radian)"
+                },
+                "omega_dot":{
+                    "type":"number",
+                    "description":"Corrections to orbital E, omega_dot (radian/s)"
+                },
+                "delta_i":{
+                    "type":"number",
+                    "description":"Correction of inclination (radian)"
+                },
+            },
+            "required":["satellite_id"],
+            "additionalProperties":false
+        },
         "ionosphere":{
             "type":"object",
             "properties":{
