@@ -246,7 +246,7 @@
                     "description":"Corrections to orbital E, cis (radian)"
                 }
             },
-            "required":["satellite_id","reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
+            "required":["satellite_id","ephemeris_reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
             "additionalProperties":false
         },
         "ionosphere":{
