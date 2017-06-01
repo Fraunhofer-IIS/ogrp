@@ -19,6 +19,36 @@
             "type":"number",
             "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
         },
+        "timestamp_gpst":{
+            "type":"object",
+            "properties":{
+                "tow":{
+                    "type":"number",
+                    "description":"Seconds in current week (GPS time) (s)",
+                },
+                "week":{
+                    type:"integer",
+                    "description":"Full weeks since start of GPS time (number of weeks)",
+                },
+            },
+            "required":["tow","week"],
+            "additionalProperties":false,
+        },
+        "timestamp_gst":{
+            "type":"object",
+            "properties":{
+                "tow":{
+                    "type":"number",
+                    "description":"Seconds in current week (Galileo time) (s)",
+                },
+                "week":{
+                    type:"integer",
+                    "description":"Full weeks since start of Galileo time (number of weeks)",
+                },
+            },
+            "required":["tow","week"],
+            "additionalProperties":false,
+        },
         "hw_timestamp":{
             "type":"integer",
             "description":"Hardware timestamp, which is required for external tracking (clock ticks, overflow at 2^32)",
