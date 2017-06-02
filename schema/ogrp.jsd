@@ -370,6 +370,29 @@
             "required":["amplitude","period"],
             "additionalProperties":false
         },
+        "ionosphere_nequick":{
+            "type":"object",
+            "properties":{
+                "effective_ionisation_level":{
+                    "type":"array",
+                    "numItems":3,
+                    "description":"Effective ionisation level 1st..3rd order of Nequick model (sfu..sfu/deg^2)",
+                    "items":{
+                        "type":"number",
+                    },
+                },
+                "disturbance":{
+                    "type":"array",
+                    "numItems":5,
+                    "description":"Disturbance flags of the 5 regions",
+                    "items":{
+                        "type":"boolean",
+                    },
+                },
+            },
+            "required":["effective_ionisation_level"],
+            "additionalProperties":false,
+        },
         "pvt_calculation":{
             "type":"object",
             "properties":{
