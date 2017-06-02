@@ -347,7 +347,7 @@
             "required":["satellite_id"],
             "additionalProperties":false
         },
-        "ionosphere":{
+        "ionosphere_klobuchar":{
             "type":"object",
             "properties":{
                 "amplitude":{
