@@ -520,24 +520,56 @@
             },
             "uniqueItems":true,
         },
-        "utc_parameter":{
+        "gnss_utc_parameter":{
             "type":"object",
             "properties":{
-                "f_b":{
+                "gnss":{
+                    "enum":["GPS","GALILEO"],
+                    "description":"",
+                },
+                "a_0":{
                     "type":"number",
                     "description":"Polynom constant value (s)"
                 },
-                "f_a":{
+                "a_1":{
                     "type":"number",
                     "description":"Polynom linear value (s/s)"
                 },
-                "leap_seconds":{
+                "delta_ls":{
                     "type":"integer",
-                    "description":"Delta leap seconds (s)"
-                }
+                    "description":"Leap second count before leap second adjustment (s)"
+                },
+                "reference_time":{
+                    "type":"object",
+                    "properties":{
+                        "tow":{
+                            "type":"number",
+                            "description":"UTC data reference time of week (s)",
+                        },
+                        "week":{
+                            "type":"integer",
+                            "description":"UTC data reference week number (week)",
+                        },
+                    },
+                    "required":["tow","week"],
+                    "additionalProperties":false,
+                },
+                "week_lsf":{
+                    "type":"integer",
+                    "description":"Week number of leap second adjustment (week)",
+                },
+                "day_number":{
+                    "type":"integer",
+                    "description":"Day number at the end of which a leap second adjustment becomes effective (day)",
+                },
+                "delta_lsf":{
+                    "type":"integer",
+                    "description":"Leap second count after leap second adjustment (s)"
+                },
             },
-            "required":["leap_seconds"],
-            "additionalProperties":false
+            "required":["gnss","a_0","a_1","delta_ls","reference_time","week_lsf","day_number","delta_lsf"],
+            "additionalProperties":false,
+            "description":"GNSS-UTC conversion parameters",
         },
         "channel_measurements":{
             "type":"array",
