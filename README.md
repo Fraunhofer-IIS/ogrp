@@ -1,23 +1,25 @@
 OGRP
 ====
 
-The Open Gnss Receiver Protocol
+The Open Gnss Receiver Protocol (<http://fraunhofer-iis.github.io/ogrp/>).
 
 Introduction
 ============
 
 Previous attempts to define an exchange protocol for GNSS related data
 have been proposed only by manufacturers for their own products with
-proprietary wire protocols or for limited applications, e.g. RTCM,
-RINEX, NMEA.
+proprietary wire protocols or for limited applications, e.g.
+[RTCM](http://www.navipedia.net/index.php/DGNSS_Standards),
+[RINEX](https://en.wikipedia.org/wiki/RINEX),
+[NMEA](https://en.wikipedia.org/wiki/NMEA_0183).
 
 OGRP (<b>O</b>pen  <b>G</b>NSS <b>R</b>eceiver <b>P</b>rotocol) tries to be a
-protocol for many different causes in the domain of GNSS may it be
-output of raw measurements from receivers over a physical wire
+protocol for many different causes in the domain of [GNSS](http://en.wikipedia.org/wiki/GNSS)
+may it be output of raw measurements from receivers over a physical wire
 connection but also supporting RPC (remote procedure call) like
-JSON-RPC.
+[JSON-RPC](https://de.wikipedia.org/wiki/JSON-RPC).
 
-OGRP is a protocol based on JSON ([RFC4627]).
+OGRP is a protocol based on JSON ([RFC4627](https://www.ietf.org/rfc/rfc4627.txt)).
 
 For the use in RPC, zerorpc (<http://zerorpc.dotcloud.com/>) is
 recommended as a transport mechanism. Other mechanisms
