@@ -1,5 +1,5 @@
 {
-    "id":"https://github.com/Fraunhofer-IIS/ogrp",
+    "id":"https://fraunhofer-iis.github.io/ogrp/draft-01/schema#",
     "$schema":"http://json-schema.org/draft-04/schema#",
     "description":"Minimum schema for a PVT application",
     "type":"object",

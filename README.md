@@ -16,7 +16,7 @@ proprietary wire protocols or for limited applications, e.g.
 [NMEA](https://en.wikipedia.org/wiki/NMEA_0183).
 
 OGRP (<b>O</b>pen  <b>G</b>NSS <b>R</b>eceiver <b>P</b>rotocol) tries to be a
-protocol for many different causes in the domain of [GNSS](http://en.wikipedia.org/wiki/GNSS)
+protocol for many different use cases in the domain of [GNSS](http://en.wikipedia.org/wiki/GNSS)
 may it be output of raw measurements from receivers over a physical wire
 connection but also supporting RPC (remote procedure call) like
 [JSON-RPC](https://de.wikipedia.org/wiki/JSON-RPC).
@@ -65,7 +65,7 @@ Maturity
 Maturity indicator: Is this an experimental, draft, stable, legacy, or
 retired specification?
 
-A: OGRP is considered in experimental state.
+A: OGRP is considered in draft state.
 
 Extending the protocol / specification
 --------------------------------------
@@ -148,28 +148,8 @@ Key naming
 
 Names of keys should be explicit and unambiguous.
 
-If desired, abbreviations can be used but should be properly defined. Both
-variants of a key, abbreviated and non-abbreviated should be supported.
-
-Here is the list of currently defined abbreviations:
-
-| full name             | abbreviation |
-|-----------------------|--------------|
-| channel_measurement   | ch_meas      |
-| channel_number        | ch_nr        |
-| pseudorange           | psr          |
-| satellite_id          | sat_id       |
-| signal_to_noise_ratio | snr          |
-
-
-Representing time and date
---------------------------
-
-Fields called 'timestamp' can hold times specified in UNIX time or ISO 8601. So if the JSON
-type is float it's a UNIX time referred to UTC. If the JSON type is string, it must conform
-to ISO 8601.
-
-GPS or Galileo time is only valid for fields called 'gps_time' or 'galileo_time'.
+If desired, abbreviations can be used but should be properly defined using a
+title element in the schema.
 
 
 Usage
