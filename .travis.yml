@@ -4,4 +4,6 @@ install:
   - composer require seld/jsonlint
 
 script:
-  - vendor/bin/jsonlint schema/ogrp.jsd
+  - vendor/bin/jsonlint draft-00/schema
+  - vendor/bin/jsonlint draft-01/schema
+  - vendor/bin/jsonlint examples/measurement.ogrp

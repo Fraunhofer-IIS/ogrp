@@ -1,0 +1,437 @@
+{
+    "id":"https://fraunhofer-iis.github.io/ogrp/draft-00/schema#",
+    "$schema":"http://json-schema.org/draft-04/schema#",
+    "description":"Minimum schema for a PVT application",
+    "type":"object",
+    "properties":{
+        "protocol":{
+            "enum":["OGRP1"],
+            "description":"OGRP version"
+        },
+        "id":{
+            "type":"string"
+        },
+        "time_status":{
+            "enum":["SYSTEM","EXTERNAL","FREE_RUNNING","FINESTEERING","GPS_SYNCED"],
+            "description":"Timestamp source"
+        },
+        "timestamp":{
+            "type":"number",
+            "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+        },
+        "sw_version":{
+            "type":"number"
+        },
+        "module":{
+            "type":"string",
+            "description":"Name of associated module"
+        },
+        "settings":{
+            "type":"array",
+            "minItems":0,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "name":{
+                        "type":"string",
+                        "description":"Name of setting"
+                    },
+                    "value":{
+                        "type":"string",
+                        "description":"Value of data as string"
+                    },
+                    "type":{
+                        "type":"string",
+                        "description":"String with typename or array with enumvalues as string"
+                    },
+                    "remark":{
+                        "type":"string",
+                        "description":"It is a description but description is a reserved word when using schema"
+                    }
+                },
+                "required":["name","value","type"],
+                "additionalProperties":false
+            }
+        },
+        "glonass_ephemeris":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "satellite_id":{
+                        "type":"integer",
+                        "minimum":1,
+                        "description":"The satellite ID (PRN)"
+                    },
+                    "freqnum":{
+                        "type":"integer",
+                        "description":"Frequency channel number (-7...24)"
+                    },
+                    "reference_time":{
+                        "type":"integer",
+                        "description":"Reference time of ephemeris (s)"
+                    },
+                    "reference_day":{
+                        "type":"integer",
+                        "description":"Day of reference time of ephemeris (day in 4 year block)"
+                    },
+                    "healthy":{
+                        "type":"boolean",
+                        "description":"True means satelitte is healthy, taken from signal"
+                    },
+                    "healthy1":{
+                        "type":"boolean",
+                        "description":"True means satelitte is healthy, taken from almanac"
+                    },
+                    "healthy2":{
+                        "type":"boolean",
+                        "description":"True means satelitte is healthy, own diagnostic"
+                    },
+                    "age":{
+                        "type":"number",
+                        "description":"Ephemeris, age of data (days)"
+                    },
+                    "coords":{
+                        "type":"array",
+                        "numItems":3,
+                        "description":"Ephemeris, coordinates (km)",
+                        "items":{
+                            "type":"number"
+                        }
+                    },
+                    "velocities":{
+                        "type":"array",
+                        "numItems":3,
+                        "description":"Ephemeris, velocities (km/s)",
+                        "items":{
+                            "type":"number"
+                        }
+                    },
+                    "accelarations":{
+                        "type":"array",
+                        "numItems":3,
+                        "description":"Ephemeris, accelarations (km/s*s)",
+                        "items":{
+                            "type":"number"
+                        }
+                    },
+                    "tau_sys":{
+                        "type":"number",
+                        "description":"Clock, time correction to glonass time scale (s)"
+                    },
+                    "tau":{
+                        "type":"number",
+                        "description":"Clock, time correction to sat-clock (s)"
+                    },
+                    "gamma":{
+                        "type":"number",
+                        "description":"Clock, sat-clock offset rate (s/s)"
+                    }
+                },
+                "required":["satellite_id","reference_time","reference_day","coords","velocities","accelarations"],
+                "additionalProperties":false
+            },
+            "uniqueItems":true
+        },
+        "ephemeris":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "gnss":{
+                        "enum":["GPS","GALILEO"],
+                        "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
+                    },
+                    "satellite_id":{
+                        "type":"integer",
+                        "minimum":1,
+                        "description":"The satellite ID (PRN)"
+                    },
+                    "clock_issue":{
+                        "type":"integer",
+                        "description":"Subframe 1, issue of data, clock"
+                    },
+                    "satellite_health":{
+                        "type":"integer",
+                        "description":"Subframe 1, satellite health"
+                    },
+                    "clock_reference":{
+                        "type":"integer",
+                        "description":"Subframe 1, clock Data reference time (s)"
+                    },
+                    "week_number":{
+                        "type":"integer",
+                        "description":"Subframe 1, GPS week number"
+                    },
+                    "group_delay":{
+                        "type":"number",
+                        "description":"Subframe 1, estimated group delay differential (s)"
+                    },
+                    "af_2":{
+                        "type":"number",
+                        "description":"Subframe 1, polynomal coefficient (s/s*s)"
+                    },
+                    "af_1":{
+                        "type":"number",
+                        "description":"Subframe 1, polynomal coefficient (s/s)"
+                    },
+                    "af_0":{
+                        "type":"number",
+                        "description":"Subframe 1, polynomal coefficient (s)"
+                    },
+                    "ephemeris_reference":{
+                        "type":"integer",
+                        "description":"Subframe 2 and 3, ephemeris reference time (s)"
+                    },
+                    "ephemeris_issue":{
+                        "type":"integer",
+                        "description":"Subframe 2 and 3, issue of data, ephemeris"
+                    },
+                    "root_a":{
+                        "type":"number",
+                        "description":"Keplerian, root_a (m^1/2)"
+                    },
+                    "ecc":{
+                        "type":"number",
+                        "description":"Keplerian, ecc"
+                    },
+                    "m_0":{
+                        "type":"number",
+                        "description":"Keplerian, m_0 (semi_circles)"
+                    },
+                    "omega_0":{
+                        "type":"number",
+                        "description":"Keplerian, omega_0 (semi_circles)"
+                    },
+                    "inc_0":{
+                        "type":"number",
+                        "description":"Keplerian, inc_0 (semi_circles)"
+                    },
+                    "arg_per":{
+                        "type":"number",
+                        "description":"Keplerian, arg_per (semi_circles)"
+                    },
+                    "deln":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, deln (semi_circles/s)"
+                    },
+                    "omega_dot":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, omega_dot (semi_circles/s)"
+                    },
+                    "inc_dot":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, inc_dot (semi_circles/s)"
+                    },
+                    "crc":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, crc (m)"
+                    },
+                    "crs":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, crs (m)"
+                    },
+                    "cuc":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, cuc (radian)"
+                    },
+                    "cus":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, cus (radian)"
+                    },
+                    "cic":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, cic (radian)"
+                    },
+                    "cis":{
+                        "type":"number",
+                        "description":"Corrections to orbital E, cis (radian)"
+                    }
+                },
+                "required":["satellite_id","reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
+                "additionalProperties":false
+            },
+            "uniqueItems":true
+        },
+        "ionosphere":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "amplitude":{
+                        "type":"array",
+                        "numItems":4,
+                        "description":"Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
+                        "items":{
+                            "type":"number"
+                        }
+                    },
+                    "period":{
+                        "type":"array",
+                        "numItems":4,
+                        "description":"Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
+                        "items":{
+                            "type":"number"
+                        }
+                    }
+                },
+                "required":["amplitude","period"],
+                "additionalProperties":false
+            },
+            "uniqueItems":true
+        },
+        "pvt_calculation":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "timestamp_meas":{
+                        "type":"number",
+                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+                    },
+                    "timestamp_system":{
+                        "enum":["GPS","GLONASS","GALILEO"],
+                        "description":"GNSS system of bias for timestamp"
+                    },
+                    "coordinate_system":{
+                        "enum":["ECEF","WGS84"],
+                        "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
+                    },
+                    "precision":{
+                        "enum":["2D","3D","NOT_FIX"],
+                        "description":"Calculation precision "
+                    },
+                    "position":{
+                        "type":"object",
+                        "properties":{
+                            "x":{
+                                "type":"number",
+                                "description":"Depending on coordinate_systems"
+                            },
+                            "y":{
+                                "type":"number",
+                                "description":"Depending on coordinate_systems"
+                            },
+                            "z":{
+                                "type":"number",
+                                "description":"Depending on coordinate_systems"
+                            }
+                        },
+                        "description":"The calculated position"
+                    }
+                },
+                "required":["timestamp_meas","timestamp_system"],
+                "additionalProperties":false
+            }
+        },
+        "utc_parameter":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "f_b":{
+                        "type":"number",
+                        "description":"Polynom constant value (s)"
+                    },
+                    "f_a":{
+                        "type":"number",
+                        "description":"Polynom linear value (s/s)"
+                    },
+                    "leap_seconds":{
+                        "type":"integer",
+                        "description":"Delta leap seconds (s)"
+                    }
+                },
+                "required":["leap_seconds"],
+                "additionalProperties":false
+            },
+            "uniqueItems":true
+        },
+        "channel_measurements":{
+            "type":"array",
+            "minItems":1,
+            "items":{
+                "type":"object",
+                "properties":{
+                    "carrier_phase":{
+                        "type":"number",
+                        "description":"(cycles)"
+                    },
+                    "carrier_range":{
+                        "type":"number",
+                        "description":"(meter)"
+                    },
+                    "code_phase":{
+                        "type":"number",
+                        "description":"(chips)"
+                    },
+                    "satellite_id":{
+                        "type":"integer",
+                        "minimum":1,
+                        "description":"The satellite ID (PRN)"
+                    },
+                    "timestamp_meas":{
+                        "type":"number",
+                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+                    },
+                    "timestamp_gps":{
+                        "type":"number",
+                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+                    },
+                    "timestamp_glonass":{
+                        "type":"number",
+                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+                    },
+                    "timestamp_galileo":{
+                        "type":"number",
+                        "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+                    },
+                    "channel_state":{
+                        "enum":["IDLE","SEARCHING","PULL_IN","LOCKED","SYNCED"]
+                    },
+                    "channel_number":{
+                        "type":"integer",
+                        "minimum":1
+                    },
+                    "frequency_number":{
+                        "type":"integer",
+                        "minimum":-7,
+                        "description":"Only for GLONASS frequency slot number"
+                    },
+                    "gnss":{
+                        "enum":["GPS","GALILEO","GLONASS","SBAS"]
+                    },
+                    "signal_type":{
+                        "enum":["L1CA","L2CA","L5I","E5aI","P1","P2","P5","E1","E5","E6","E5a","E5b"]
+                    },
+                    "doppler":{
+                        "type":"number",
+                        "description":"(Hz)"
+                    },
+                    "locktime":{
+                        "type":"number",
+                        "description":"(seconds)"
+                    },
+                    "snr":{
+                        "type":"number",
+                        "description":"Signal to noise ratio"
+                    },
+                    "pseudo_range":{
+                        "type":"number",
+                        "description":"(meter)"
+                    }
+                },
+                "required":["carrier_phase","pseudo_range","satellite_id","gnss"],
+                "additionalProperties":false
+            },
+            "uniqueItems":true
+        }
+    },
+    "required":["id","timestamp","protocol"],
+    "additionalProperties":false
+}
