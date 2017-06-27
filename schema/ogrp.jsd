@@ -24,946 +24,931 @@
             "properties":{
                 "tow":{
                     "type":"number",
-                    "description":"Seconds in current week (GPS time) (s)",
+                    "description":"Seconds in current week (GPS time) (s)"
                 },
                 "week":{
-                    type:"integer",
-                    "description":"Full weeks since start of GPS time (number of weeks)",
-                },
+                    "type":"integer",
+                    "description":"Full weeks since start of GPS time (number of weeks)"
+                }
             },
             "required":["tow","week"],
-            "additionalProperties":false,
+            "additionalProperties":false
         },
         "timestamp_gst":{
             "type":"object",
             "properties":{
                 "tow":{
                     "type":"number",
-                    "description":"Seconds in current week (Galileo time) (s)",
+                    "description":"Seconds in current week (Galileo time) (s)"
                 },
                 "week":{
-                    type:"integer",
-                    "description":"Full weeks since start of Galileo time (number of weeks)",
-                },
+                    "type":"integer",
+                    "description":"Full weeks since start of Galileo time (number of weeks)"
+                }
             },
             "required":["tow","week"],
-            "additionalProperties":false,
+            "additionalProperties":false
         },
         "hw_timestamp":{
             "type":"integer",
-            "description":"Hardware timestamp, which is required for external tracking (clock ticks, overflow at 2^32)",
+            "description":"Hardware timestamp, which is required for external tracking (clock ticks, overflow at 2^32)"
         },
-        "sw_version":{
-            "type":"number"
+        "sw_version": {
+            "type": "number"
         },
-        "module":{
-            "type":"string",
-            "description":"Name of associated module"
+        "module": {
+            "type": "string",
+            "description": "Name of associated module"
         },
-        "settings":{
-            "type":"array",
-            "minItems":0,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "name":{
-                        "type":"string",
-                        "description":"Name of setting"
+        "settings": {
+            "type": "array",
+            "minItems": 0,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Name of setting"
                     },
-                    "value":{
-                        "type":"string",
-                        "description":"Value of data as string"
+                    "value": {
+                        "type": "string",
+                        "description": "Value of data as string"
                     },
-                    "type":{
-                        "type":"string",
-                        "description":"String with typename or array with enumvalues as string"
+                    "type": {
+                        "type": "string",
+                        "description": "String with typename or array with enumvalues as string"
                     },
-                    "remark":{
-                        "type":"string",
-                        "description":"It is a description but description is a reserved word when using schema"
+                    "remark": {
+                        "type": "string",
+                        "description": "It is a description but description is a reserved word when using schema"
                     }
                 },
-                "required":["name","value","type"],
-                "additionalProperties":false
+                "required": ["name", "value", "type"],
+                "additionalProperties": false
             }
         },
-        "glonass_ephemeris":{
-            "type":"object",
-            "properties":{
-                "satellite_id":{
-                    "type":"integer",
-                    "minimum":1,
-                    "description":"The satellite ID (PRN)"
+        "glonass_ephemeris": {
+            "type": "object",
+            "properties": {
+                "satellite_id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "The satellite ID (PRN)"
                 },
-                "freqnum":{
-                    "type":"integer",
-                    "description":"Frequency channel number (-7...24)"
+                "freqnum": {
+                    "type": "integer",
+                    "description": "Frequency channel number (-7...24)"
                 },
-                "reference_time":{
-                    "type":"integer",
-                    "description":"Reference time of ephemeris (s)"
+                "reference_time": {
+                    "type": "integer",
+                    "description": "Reference time of ephemeris (s)"
                 },
-                "reference_day":{
-                    "type":"integer",
-                    "description":"Day of reference time of ephemeris (day in 4 year block)"
+                "reference_day": {
+                    "type": "integer",
+                    "description": "Day of reference time of ephemeris (day in 4 year block)"
                 },
-                "healthy":{
-                    "type":"boolean",
-                    "description":"True means satelitte is healthy, taken from signal"
+                "healthy": {
+                    "type": "boolean",
+                    "description": "True means satelitte is healthy, taken from signal"
                 },
-                "healthy1":{
-                    "type":"boolean",
-                    "description":"True means satelitte is healthy, taken from almanac"
+                "healthy1": {
+                    "type": "boolean",
+                    "description": "True means satelitte is healthy, taken from almanac"
                 },
-                "healthy2":{
-                    "type":"boolean",
-                    "description":"True means satelitte is healthy, own diagnostic"
+                "healthy2": {
+                    "type": "boolean",
+                    "description": "True means satelitte is healthy, own diagnostic"
                 },
-                "age":{
-                    "type":"number",
-                    "description":"Ephemeris, age of data (days)"
+                "age": {
+                    "type": "number",
+                    "description": "Ephemeris, age of data (days)"
                 },
-                "coords":{
-                    "type":"array",
-                    "numItems":3,
-                    "description":"Ephemeris, coordinates (km)",
-                    "items":{
-                        "type":"number"
+                "coords": {
+                    "type": "array",
+                    "numItems": 3,
+                    "description": "Ephemeris, coordinates (km)",
+                    "items": {
+                        "type": "number"
                     }
                 },
-                "velocities":{
-                    "type":"array",
-                    "numItems":3,
-                    "description":"Ephemeris, velocities (km/s)",
-                    "items":{
-                        "type":"number"
+                "velocities": {
+                    "type": "array",
+                    "numItems": 3,
+                    "description": "Ephemeris, velocities (km/s)",
+                    "items": {
+                        "type": "number"
                     }
                 },
-                "accelarations":{
-                    "type":"array",
-                    "numItems":3,
-                    "description":"Ephemeris, accelarations (km/s*s)",
-                    "items":{
-                        "type":"number"
+                "accelarations": {
+                    "type": "array",
+                    "numItems": 3,
+                    "description": "Ephemeris, accelarations (km/s*s)",
+                    "items": {
+                        "type": "number"
                     }
                 },
-                "tau_sys":{
-                    "type":"number",
-                    "description":"Clock, time correction to glonass time scale (s)"
+                "tau_sys": {
+                    "type": "number",
+                    "description": "Clock, time correction to glonass time scale (s)"
                 },
-                "tau":{
-                    "type":"number",
-                    "description":"Clock, time correction to sat-clock (s)"
+                "tau": {
+                    "type": "number",
+                    "description": "Clock, time correction to sat-clock (s)"
                 },
-                "gamma":{
-                    "type":"number",
-                    "description":"Clock, sat-clock offset rate (s/s)"
+                "gamma": {
+                    "type": "number",
+                    "description": "Clock, sat-clock offset rate (s/s)"
                 }
             },
-            "required":["satellite_id","reference_time","reference_day","coords","velocities","accelarations"],
-            "additionalProperties":false
+            "required": ["satellite_id", "reference_time", "reference_day", "coords", "velocities", "accelarations"],
+            "additionalProperties": false
         },
-        "ephemeris":{
-            "type":"object",
-            "properties":{
-                "gnss":{
-                    "enum":["GPS","GALILEO"],
-                    "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
+        "ephemeris": {
+            "type": "object",
+            "properties": {
+                "gnss": {
+                    "enum": ["GPS", "GALILEO"],
+                    "description": "By default GPS. All GNSS Systems with Kepler Data for ephemeris"
                 },
-                "satellite_id":{
-                    "type":"integer",
-                    "minimum":1,
-                    "description":"The satellite ID (PRN)"
+                "satellite_id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "The satellite ID (PRN)"
                 },
-                "clock_issue":{
-                    "type":"integer",
-                    "description":"Subframe 1, issue of data, clock"
+                "clock_issue": {
+                    "type": "integer",
+                    "description": "Subframe 1, issue of data, clock"
                 },
-                "satellite_health":{
-                    "type":"integer",
-                    "description":"Subframe 1, satellite health"
+                "satellite_health": {
+                    "type": "integer",
+                    "description": "Subframe 1, satellite health"
                 },
-                "clock_reference":{
-                    "type":"integer",
-                    "description":"Subframe 1, clock Data reference time (s)"
+                "clock_reference": {
+                    "type": "integer",
+                    "description": "Subframe 1, clock Data reference time (s)"
                 },
-                "week_number":{
-                    "type":"integer",
-                    "description":"Subframe 1, GPS week number"
+                "week_number": {
+                    "type": "integer",
+                    "description": "Subframe 1, GPS week number"
                 },
-                "group_delay":{
-                    "type":"number",
-                    "description":"Subframe 1, estimated group delay differential (s)"
+                "group_delay": {
+                    "type": "number",
+                    "description": "Subframe 1, estimated group delay differential (s)"
                 },
-                "af_2":{
-                    "type":"number",
-                    "description":"Subframe 1, polynomal coefficient (s/s*s)"
+                "af_2": {
+                    "type": "number",
+                    "description": "Subframe 1, polynomal coefficient (s/s*s)"
                 },
-                "af_1":{
-                    "type":"number",
-                    "description":"Subframe 1, polynomal coefficient (s/s)"
+                "af_1": {
+                    "type": "number",
+                    "description": "Subframe 1, polynomal coefficient (s/s)"
                 },
-                "af_0":{
-                    "type":"number",
-                    "description":"Subframe 1, polynomal coefficient (s)"
+                "af_0": {
+                    "type": "number",
+                    "description": "Subframe 1, polynomal coefficient (s)"
                 },
-                "ephemeris_reference":{
-                    "type":"integer",
-                    "description":"Subframe 2 and 3, ephemeris reference time (s)"
+                "ephemeris_reference": {
+                    "type": "integer",
+                    "description": "Subframe 2 and 3, ephemeris reference time (s)"
                 },
-                "ephemeris_issue":{
-                    "type":"integer",
-                    "description":"Subframe 2 and 3, issue of data, ephemeris"
+                "ephemeris_issue": {
+                    "type": "integer",
+                    "description": "Subframe 2 and 3, issue of data, ephemeris"
                 },
-                "root_a":{
-                    "type":"number",
-                    "description":"Keplerian, root_a (m^1/2)"
+                "root_a": {
+                    "type": "number",
+                    "description": "Keplerian, root_a (m^1/2)"
                 },
-                "ecc":{
-                    "type":"number",
-                    "description":"Keplerian, ecc"
+                "ecc": {
+                    "type": "number",
+                    "description": "Keplerian, ecc"
                 },
-                "m_0":{
-                    "type":"number",
-                    "description":"Keplerian, m_0 (radian)"
+                "m_0": {
+                    "type": "number",
+                    "description": "Keplerian, m_0 (radian)"
                 },
-                "omega_0":{
-                    "type":"number",
-                    "description":"Keplerian, omega_0 (radian)"
+                "omega_0": {
+                    "type": "number",
+                    "description": "Keplerian, omega_0 (radian)"
                 },
-                "inc_0":{
-                    "type":"number",
-                    "description":"Keplerian, inc_0 (radian)"
+                "inc_0": {
+                    "type": "number",
+                    "description": "Keplerian, inc_0 (radian)"
                 },
-                "arg_per":{
-                    "type":"number",
-                    "description":"Keplerian, arg_per (radian)"
+                "arg_per": {
+                    "type": "number",
+                    "description": "Keplerian, arg_per (radian)"
                 },
-                "deln":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, deln (radian/s)"
+                "deln": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, deln (radian/s)"
                 },
-                "omega_dot":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, omega_dot (radian/s)"
+                "omega_dot": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, omega_dot (radian/s)"
                 },
-                "inc_dot":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, inc_dot (radian/s)"
+                "inc_dot": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, inc_dot (radian/s)"
                 },
-                "crc":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, crc (m)"
+                "crc": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, crc (m)"
                 },
-                "crs":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, crs (m)"
+                "crs": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, crs (m)"
                 },
-                "cuc":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, cuc (radian)"
+                "cuc": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, cuc (radian)"
                 },
-                "cus":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, cus (radian)"
+                "cus": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, cus (radian)"
                 },
-                "cic":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, cic (radian)"
+                "cic": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, cic (radian)"
                 },
-                "cis":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, cis (radian)"
+                "cis": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, cis (radian)"
                 }
             },
-            "required":["satellite_id","ephemeris_reference","root_a","ecc","m_0","omega_0","inc_0","arg_per"],
-            "additionalProperties":false
+            "required": ["satellite_id", "ephemeris_reference", "root_a", "ecc", "m_0", "omega_0", "inc_0", "arg_per"],
+            "additionalProperties": false
         },
-        "almanac":{
-            "type":"object",
-            "properties":{
-                "gnss":{
-                    "enum":["GPS","GALILEO"],
-                    "description":"By default GPS. All GNSS Systems with Kepler Data for ephemeris"
+        "almanac": {
+            "type": "object",
+            "properties": {
+                "gnss": {
+                    "enum": ["GPS", "GALILEO"],
+                    "description": "By default GPS. All GNSS Systems with Kepler Data for ephemeris"
                 },
-                "satellite_id":{
-                    "type":"integer",
-                    "minimum":1,
-                    "description":"The satellite ID (PRN)"
+                "satellite_id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "The satellite ID (PRN)"
                 },
-                "almanac_issue":{
-                    "type":"integer",
-                    "description":"Issue of almanac data"
+                "almanac_issue": {
+                    "type": "integer",
+                    "description": "Issue of almanac data"
                 },
-                "satellite_health":{
-                    "type":"integer",
-                    "description":"Satellite health status"
+                "satellite_health": {
+                    "type": "integer",
+                    "description": "Satellite health status"
                 },
-                "almanac_reference":{
-                    "type":"integer",
-                    "description":"Almanac reference time (s)"
+                "almanac_reference": {
+                    "type": "integer",
+                    "description": "Almanac reference time (s)"
                 },
-                "week_number":{
-                    "type":"integer",
-                    "description":"Almanac reference week number"
+                "week_number": {
+                    "type": "integer",
+                    "description": "Almanac reference week number"
                 },
-                "af_1":{
-                    "type":"number",
-                    "description":"Satellite clock correction linear (s/s)"
+                "af_1": {
+                    "type": "number",
+                    "description": "Satellite clock correction linear (s/s)"
                 },
-                "af_0":{
-                    "type":"number",
-                    "description":"Satellite clock correction bias (s)"
+                "af_0": {
+                    "type": "number",
+                    "description": "Satellite clock correction bias (s)"
                 },
-                "root_a":{
-                    "type":"number",
-                    "description":"Keplerian, root_a (m^1/2)"
+                "root_a": {
+                    "type": "number",
+                    "description": "Keplerian, root_a (m^1/2)"
                 },
-                "ecc":{
-                    "type":"number",
-                    "description":"Keplerian, ecc"
+                "ecc": {
+                    "type": "number",
+                    "description": "Keplerian, ecc"
                 },
-                "m_0":{
-                    "type":"number",
-                    "description":"Keplerian, m_0 (radian)"
+                "m_0": {
+                    "type": "number",
+                    "description": "Keplerian, m_0 (radian)"
                 },
-                "omega_0":{
-                    "type":"number",
-                    "description":"Keplerian, omega_0 (radian)"
+                "omega_0": {
+                    "type": "number",
+                    "description": "Keplerian, omega_0 (radian)"
                 },
-                "arg_per":{
-                    "type":"number",
-                    "description":"Keplerian, arg_per (radian)"
+                "arg_per": {
+                    "type": "number",
+                    "description": "Keplerian, arg_per (radian)"
                 },
-                "omega_dot":{
-                    "type":"number",
-                    "description":"Corrections to orbital E, omega_dot (radian/s)"
+                "omega_dot": {
+                    "type": "number",
+                    "description": "Corrections to orbital E, omega_dot (radian/s)"
                 },
-                "delta_i":{
-                    "type":"number",
-                    "description":"Correction of inclination (radian)"
-                },
+                "delta_i": {
+                    "type": "number",
+                    "description": "Correction of inclination (radian)"
+                }
             },
-            "required":["satellite_id"],
-            "additionalProperties":false
+            "required": ["satellite_id"],
+            "additionalProperties": false
         },
-        "ionosphere_klobuchar":{
-            "type":"object",
-            "properties":{
-                "amplitude":{
-                    "type":"array",
-                    "numItems":4,
-                    "description":"Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
-                    "items":{
-                        "type":"number"
+        "ionosphere_klobuchar": {
+            "type": "object",
+            "properties": {
+                "amplitude": {
+                    "type": "array",
+                    "numItems": 4,
+                    "description": "Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
+                    "items": {
+                        "type": "number"
                     }
                 },
-                "period":{
-                    "type":"array",
-                    "numItems":4,
-                    "description":"Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
-                    "items":{
-                        "type":"number"
+                "period": {
+                    "type": "array",
+                    "numItems": 4,
+                    "description": "Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
+                    "items": {
+                        "type": "number"
                     }
                 }
             },
-            "required":["amplitude","period"],
-            "additionalProperties":false
+            "required": ["amplitude", "period"],
+            "additionalProperties": false
         },
-        "ionosphere_nequick":{
-            "type":"object",
-            "properties":{
-                "effective_ionisation_level":{
-                    "type":"array",
-                    "numItems":3,
-                    "description":"Effective ionisation level 1st..3rd order of Nequick model (sfu..sfu/deg^2)",
-                    "items":{
-                        "type":"number",
-                    },
+        "ionosphere_nequick": {
+            "type": "object",
+            "properties": {
+                "effective_ionisation_level": {
+                    "type": "array",
+                    "numItems": 3,
+                    "description": "Effective ionisation level 1st..3rd order of Nequick model (sfu..sfu/deg^2)",
+                    "items": {
+                        "type": "number"
+                    }
                 },
-                "disturbance":{
-                    "type":"array",
-                    "numItems":5,
-                    "description":"Disturbance flags of the 5 regions",
-                    "items":{
-                        "type":"boolean",
-                    },
-                },
+                "disturbance": {
+                    "type": "array",
+                    "numItems": 5,
+                    "description": "Disturbance flags of the 5 regions",
+                    "items": {
+                        "type": "boolean"
+                    }
+                }
             },
-            "required":["effective_ionisation_level"],
-            "additionalProperties":false,
+            "required": ["effective_ionisation_level"]
         },
-        "pvt_calculation":{
-            "type":"object",
-            "properties":{
-                "number_of_satellites":{
-                    "type":"number",
-                    "description":"Number of satellites used in the PVT calculation",
+        "pvt_calculation": {
+            "type": "object",
+            "properties": {
+                "number_of_satellites": {
+                    "type": "number",
+                    "description": "Number of satellites used in the PVT calculation"
                 },
-                "coordinate_system":{
-                    "enum":["ECEF","WGS84"],
-                    "description":"In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
+                "coordinate_system": {
+                    "enum": ["ECEF", "WGS84"],
+                    "description": "In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
                 },
-                "precision":{
-                    "enum":["2D","3D","RTK_FIX","RTK_FLOAT","DGPS","SBAS","NO_FIX"],
-                    "description":"Calculation precision "
+                "precision": {
+                    "enum": ["2D", "3D", "RTK_FIX", "RTK_FLOAT", "DGPS", "SBAS", "NO_FIX"],
+                    "description": "Calculation precision "
                 },
-                "position":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"Depending on coordinate_systems"
+                "position": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "Depending on coordinate_systems"
                         },
-                        "y":{
-                            "type":"number",
-                            "description":"Depending on coordinate_systems"
+                        "y": {
+                            "type": "number",
+                            "description": "Depending on coordinate_systems"
                         },
-                        "z":{
-                            "type":"number",
-                            "description":"Depending on coordinate_systems"
+                        "z": {
+                            "type": "number",
+                            "description": "Depending on coordinate_systems"
                         }
                     },
-                    "description":"The calculated position"
+                    "description": "The calculated position"
                 },
-                "velocity":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"ECEF",
+                "velocity": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "ECEF"
                         },
-                        "y":{
-                            "type":"number",
-                            "description":"ECEF",
+                        "y": {
+                            "type": "number",
+                            "description": "ECEF"
                         },
-                        "z":{
-                            "type":"number",
-                            "description":"ECEF",
-                        },
-                    },
-                    "description":"The calculated velocity",
-                },
-                "clock_bias":{
-                    "type":"number",
-                    "description":"The calculated clock error",
-                },
-                "clock_drift":{
-                    "type":"number",
-                    "description":"The variation of the clock error in the last PVT interval",
-                },
-                "hdop":{
-                    "type":"number",
-                    "description":"The horizontal dilution of precision",
-                },
-                "pdop":{
-                    "type":"number",
-                    "description":"The positional dilution of precision",
-                },
-                "tdop":{
-                    "type":"number",
-                    "description":"The time dilution of precision",
-                },
-                "gdop":{
-                    "type":"number",
-                    "description":"The geometric dilution of precision",
-                },
-            },
-            "required":["coordinate_system","precision","position",],
-            "additionalProperties":false
-        },
-        "satellite_info":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "satellite_id":{
-                        "type":"integer",
-                        "description":"The satellite ID (PRN)"
-                    },
-                    "gnss":{
-                        "enum":["GPS","GALILEO","GLONASS","SBAS"]
-                    },
-                    "direction":{
-                        "type":"array",
-                        "description":"Normalized direction vector receiver-satellite in ECEF frame",
-                        "minItems":3,
-                        "maxItems":3,
-                        "items":{
-                            "type":"number",
-                        },
-                    },
-                    "expected_pseudorange":{
-                        "type":"number",
-                        "description":"Expected range between receiver and satellite from PVT with errors (m)",
-                    },
-                    "expected_range":{
-                        "type":"number",
-                        "description":"Expected range between receiver and satellite from PVT (m)",
-                    },
-                    "expected_range_rate":{
-                        "type":"number",
-                        "description":"Expected range rate between receiver and satellite from PVT (m/s)",
-                    },
-                    "azimuth":{
-                        "type":"number",
-                        "description":"Azimuth of the satellite (degree)",
-                    },
-                    "elevation":{
-                        "type":"number",
-                        "description":"Elevation of the satellite",
-                    },
-                },
-                "required":["satellite_id", "gnss"],
-                "additionalProperties":false,
-            },
-            "uniqueItems":true,
-        },
-        "gnss_utc_parameter":{
-            "type":"object",
-            "properties":{
-                "gnss":{
-                    "enum":["GPS","GALILEO"],
-                    "description":"",
-                },
-                "a_0":{
-                    "type":"number",
-                    "description":"Polynom constant value (s)"
-                },
-                "a_1":{
-                    "type":"number",
-                    "description":"Polynom linear value (s/s)"
-                },
-                "delta_ls":{
-                    "type":"integer",
-                    "description":"Leap second count before leap second adjustment (s)"
-                },
-                "reference_time":{
-                    "type":"object",
-                    "properties":{
-                        "tow":{
-                            "type":"number",
-                            "description":"UTC data reference time of week (s)",
-                        },
-                        "week":{
-                            "type":"integer",
-                            "description":"UTC data reference week number (week)",
-                        },
-                    },
-                    "required":["tow","week"],
-                    "additionalProperties":false,
-                },
-                "week_lsf":{
-                    "type":"integer",
-                    "description":"Week number of leap second adjustment (week)",
-                },
-                "day_number":{
-                    "type":"integer",
-                    "description":"Day number at the end of which a leap second adjustment becomes effective (day)",
-                },
-                "delta_lsf":{
-                    "type":"integer",
-                    "description":"Leap second count after leap second adjustment (s)"
-                },
-            },
-            "required":["gnss","a_0","a_1","delta_ls","reference_time","week_lsf","day_number","delta_lsf"],
-            "additionalProperties":false,
-            "description":"GNSS-UTC conversion parameters",
-        },
-        "channel_measurements":{
-            "type":"array",
-            "minItems":1,
-            "items":{
-                "type":"object",
-                "properties":{
-                    "carrier_phase":{
-                        "type":"number",
-                        "description":"(cycles)"
-                    },
-                    "carrier_range":{
-                        "type":"number",
-                        "description":"(meter)"
-                    },
-                    "code_phase":{
-                        "type":"number",
-                        "description":"(chips)"
-                    },
-                    "satellite_id":{
-                        "type":"integer",
-                        "minimum":1,
-                        "description":"The satellite ID (PRN)"
-                    },
-                    "channel_state":{
-                        "enum":["IDLE","SEARCHING","PULL_IN","LOCKED","SYNCED"]
-                    },
-                    "channel_number":{
-                        "type":"integer",
-                        "minimum":1
-                    },
-                    "frequency_number":{
-                        "type":"integer",
-                        "minimum":-7,
-                        "description":"Only for GLONASS frequency slot number"
-                    },
-                    "gnss":{
-                        "enum":["GPS","GALILEO","GLONASS","SBAS"]
-                    },
-                    "signal_type":{
-                        "enum":["L1CA","L2CA","L2P_codeless","L2CM","L5I","L5Q","E5aI","P1","P2","P5","E1","E5","E6","E5a","E5b"]
-                    },
-                    "doppler":{
-                        "type":"number",
-                        "description":"(Hz)"
-                    },
-                    "locktime":{
-                        "type":"number",
-                        "description":"(seconds)"
-                    },
-                    "frequency_lock":{
-                        "type":"number",
-                        "description":"frequency lock indicator"
-                    },
-                    "phase_lock":{
-                        "type":"number",
-                        "description":"phase lock indicator"
-                    },
-                    "snr":{
-                        "type":"number",
-                        "description":"Signal to noise ratio"
-                    },
-                    "pseudo_range":{
-                        "type":"number",
-                        "description":"(meter)"
-                    },
-                    "corrected_pseudo_range":{
-                        "type":"number",
-                        "description":"Pseudorange after applying clock and atmospheric correction (in meter)",
-                    },
-                },
-                "required":["carrier_phase","pseudo_range","satellite_id","gnss"],
-                "additionalProperties":false
-            },
-            "uniqueItems":true
-        },
-        "tracking_init":{
-            "type":"object",
-            "description":"Information about configuration of the hardware channel for external tracking loops",
-            "properties":{
-                "hw_channel_id":{
-                    "type":"integer",
-                    "description":"Unique ID of the hardware channel",
-                },
-                "carrier_frequency":{
-                    "type":"number",
-                    "description":"Carrier frequency of acquired signal (Hz)",
-                },
-                "carrier_doppler":{
-                    "type":"number",
-                    "description":"Carrier doppler from acquisition (Hz)",
-                },
-                "code_doppler":{
-                    "type":"number",
-                    "description":"Code doppler from acquisition (chips/s)",
-                },
-                "early_late_spacing":{
-                    "type":"number",
-                    "description":"Early late spacing of the hardware channel (chips)",
-                },
-                "integration_time":{
-                    "type":"number",
-                    "description":"Integration time of the correlators (s)",
-                },
-                "acf_slope":{
-                    "type":"number",
-                    "description":"Slope of the autocorrelation function (chip/chip)",
-                },
-                "dll_hard_limiter":{
-                    "type":"number",
-                    "description":"Recommended hard limitation for DLL discriminator output (chips)",
-                },
-            },
-            "required":["hw_channel_id","carrier_doppler","code_doppler","early_late_spacing","integration_time","acf_slope"],
-            "additionalProperties":false,
-        },
-        "correlation_values":{
-            "type":"object",
-            "description":"I&D values of a hardware channel",
-            "properties":{
-                "hw_channel_id":{
-                    "type":"integer",
-                    "description":"Unique ID of the hardware channel",
-                },
-                "epoch":{
-                    "type":"number",
-                    "description":"Epochs since hardware channel start (epochs)",
-                },
-                "tow":{
-                    "type":"number",
-                    "description":"Transmission time of the correlation values in seconds related to the beginning of the current week",
-                },
-                "carrier_doppler":{
-                    "type":"number",
-                    "description":"Last carrier doppler (Hz)",
-                },
-                "code_doppler":{
-                    "type":"number",
-                    "description":"Last code doppler (chips/s)",
-                },
-                "very_early":{
-                    "type":"object",
-                    "description":"Correlation value at very early correlation point",
-                    "properties":{
-                        "i":{
-                            "type":"number",
-                            "description":"Real part of the correlation",
-                        },
-                        "q":{
-                            "type":"number",
-                            "description":"Imaginary part of the correlation",
+                        "z": {
+                            "type": "number",
+                            "description": "ECEF"
                         }
                     },
-                    "required":["i","q"],
-                    "additionalProperties":false,
+                    "description": "The calculated velocity"
                 },
-                "early":{
-                    "type":"object",
-                    "description":"Correlation value at early correlation point",
-                    "properties":{
-                        "i":{
-                            "type":"number",
-                            "description":"Real part of the correlation",
-                        },
-                        "q":{
-                            "type":"number",
-                            "description":"Imaginary part of the correlation",
-                        }
-                    },
-                    "required":["i","q"],
-                    "additionalProperties":false,
+                "clock_bias": {
+                    "type": "number",
+                    "description": "The calculated clock error"
                 },
-                "prompt":{
-                    "type":"object",
-                    "description":"Correlation value at prompt correlation point",
-                    "properties":{
-                        "i":{
-                            "type":"number",
-                            "description":"Real part of the correlation",
-                        },
-                        "q":{
-                            "type":"number",
-                            "description":"Imaginary part of the correlation",
-                        }
-                    },
-                    "required":["i","q"],
-                    "additionalProperties":false,
+                "clock_drift": {
+                    "type": "number",
+                    "description": "The variation of the clock error in the last PVT interval"
                 },
-                "late":{
-                    "type":"object",
-                    "description":"Correlation value at late correlation point",
-                    "properties":{
-                        "i":{
-                            "type":"number",
-                            "description":"Real part of the correlation",
-                        },
-                        "q":{
-                            "type":"number",
-                            "description":"Imaginary part of the correlation",
-                        }
-                    },
-                    "required":["i","q"],
-                    "additionalProperties":false,
+                "hdop": {
+                    "type": "number",
+                    "description": "The horizontal dilution of precision"
                 },
-                "very_late":{
-                    "type":"object",
-                    "description":"Correlation value at very late correlation point",
-                    "properties":{
-                        "i":{
-                            "type":"number",
-                            "description":"Real part of the correlation",
-                        },
-                        "q":{
-                            "type":"number",
-                            "description":"Imaginary part of the correlation",
-                        }
-                    },
-                    "required":["i","q"],
-                    "additionalProperties":false,
+                "pdop": {
+                    "type": "number",
+                    "description": "The positional dilution of precision"
                 },
+                "tdop": {
+                    "type": "number",
+                    "description": "The time dilution of precision"
+                },
+                "gdop": {
+                    "type": "number",
+                    "description": "The geometric dilution of precision"
+                }
             },
-            "required":["hw_channel_id","epoch","early","prompt","late"],
-            "additionalProperties":false,
+            "required": ["coordinate_system", "precision", "position"]
         },
-        "control_values":{
-            "type":"object",
-            "description":"Code and carrier values to control a hardware channel",
-            "properties":{
-                "hw_channel_id":{
-                    "type":"integer",
-                    "description":"Unique ID of the hardware channel, which sent the IQ values",
+        "satellite_info": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "satellite_id": {
+                        "type": "integer",
+                        "description": "The satellite ID (PRN)"
+                    },
+                    "gnss": {
+                        "enum": ["GPS", "GALILEO", "GLONASS", "SBAS"]
+                    },
+                    "direction": {
+                        "type": "array",
+                        "description": "Normalized direction vector receiver-satellite in ECEF frame",
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "expected_pseudorange": {
+                        "type": "number",
+                        "description": "Expected range between receiver and satellite from PVT with errors (m)"
+                    },
+                    "expected_range": {
+                        "type": "number",
+                        "description": "Expected range between receiver and satellite from PVT (m)"
+                    },
+                    "expected_range_rate": {
+                        "type": "number",
+                        "description": "Expected range rate between receiver and satellite from PVT (m/s)"
+                    },
+                    "azimuth": {
+                        "type": "number",
+                        "description": "Azimuth of the satellite (degree)"
+                    },
+                    "elevation": {
+                        "type": "number",
+                        "description": "Elevation of the satellite"
+                    }
                 },
-                "lock_lost":{
-                    "type":"boolean",
-                    "description":"True if tracking of the satellite is lost for the hardware channel, which sent the IQ values",
+                "required": ["satellite_id", "gnss"]
+            },
+            "uniqueItems": true
+        },
+        "gnss_utc_parameter": {
+            "type": "object",
+            "properties": {
+                "gnss": {
+                    "enum": ["GPS", "GALILEO"],
+                    "description": ""
                 },
-                "value_list":{
-                    "type":"array",
-                    "minItems":0,
-                    "description":"List of control values for multiple channels",
-                    "items":{
-                        "type":"object",
-                        "properties":{
-                            "hw_channel_id":{
-                                "type":"integer",
-                                "description":"Unique ID of the hardware channel",
+                "a_0": {
+                    "type": "number",
+                    "description": "Polynom constant value (s)"
+                },
+                "a_1": {
+                    "type": "number",
+                    "description": "Polynom linear value (s/s)"
+                },
+                "delta_ls": {
+                    "type": "integer",
+                    "description": "Leap second count before leap second adjustment (s)"
+                },
+                "reference_time": {
+                    "type": "object",
+                    "properties": {
+                        "tow": {
+                            "type": "number",
+                            "description": "UTC data reference time of week (s)"
+                        },
+                        "week": {
+                            "type": "integer",
+                            "description": "UTC data reference week number (week)"
+                        }
+                    },
+                    "required": ["tow", "week"]
+                },
+                "week_lsf": {
+                    "type": "integer",
+                    "description": "Week number of leap second adjustment (week)"
+                },
+                "day_number": {
+                    "type": "integer",
+                    "description": "Day number at the end of which a leap second adjustment becomes effective (day)"
+                },
+                "delta_lsf": {
+                    "type": "integer",
+                    "description": "Leap second count after leap second adjustment (s)"
+                }
+            },
+            "required": ["gnss", "a_0", "a_1", "delta_ls", "reference_time", "week_lsf", "day_number", "delta_lsf"],
+            "description": "GNSS-UTC conversion parameters"
+        },
+        "channel_measurements": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "carrier_phase": {
+                        "type": "number",
+                        "description": "(cycles)"
+                    },
+                    "carrier_range": {
+                        "type": "number",
+                        "description": "(meter)"
+                    },
+                    "code_phase": {
+                        "type": "number",
+                        "description": "(chips)"
+                    },
+                    "satellite_id": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "description": "The satellite ID (PRN)"
+                    },
+                    "channel_state": {
+                        "enum": ["IDLE", "SEARCHING", "PULL_IN", "LOCKED", "SYNCED"]
+                    },
+                    "channel_number": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "frequency_number": {
+                        "type": "integer",
+                        "minimum": -7,
+                        "description": "Only for GLONASS frequency slot number"
+                    },
+                    "gnss": {
+                        "enum": ["GPS", "GALILEO", "GLONASS", "SBAS"]
+                    },
+                    "signal_type": {
+                        "enum": ["L1CA", "L2CA", "L2P_codeless", "L2CM", "L5I", "L5Q", "E5aI", "P1", "P2", "P5", "E1", "E5", "E6", "E5a", "E5b"]
+                    },
+                    "doppler": {
+                        "type": "number",
+                        "description": "(Hz)"
+                    },
+                    "locktime": {
+                        "type": "number",
+                        "description": "(seconds)"
+                    },
+                    "frequency_lock": {
+                        "type": "number",
+                        "description": "frequency lock indicator"
+                    },
+                    "phase_lock": {
+                        "type": "number",
+                        "description": "phase lock indicator"
+                    },
+                    "snr": {
+                        "type": "number",
+                        "description": "Signal to noise ratio"
+                    },
+                    "pseudo_range": {
+                        "type": "number",
+                        "description": "(meter)"
+                    },
+                    "corrected_pseudo_range": {
+                        "type": "number",
+                        "description": "Pseudorange after applying clock and atmospheric correction (in meter)"
+                    }
+                },
+                "required": ["carrier_phase", "pseudo_range", "satellite_id", "gnss"],
+                "additionalProperties": false
+            },
+            "uniqueItems": true
+        },
+        "tracking_init": {
+            "type": "object",
+            "description": "Information about configuration of the hardware channel for external tracking loops",
+            "properties": {
+                "hw_channel_id": {
+                    "type": "integer",
+                    "description": "Unique ID of the hardware channel"
+                },
+                "carrier_frequency": {
+                    "type": "number",
+                    "description": "Carrier frequency of acquired signal (Hz)"
+                },
+                "carrier_doppler": {
+                    "type": "number",
+                    "description": "Carrier doppler from acquisition (Hz)"
+                },
+                "code_doppler": {
+                    "type": "number",
+                    "description": "Code doppler from acquisition (chips/s)"
+                },
+                "early_late_spacing": {
+                    "type": "number",
+                    "description": "Early late spacing of the hardware channel (chips)"
+                },
+                "integration_time": {
+                    "type": "number",
+                    "description": "Integration time of the correlators (s)"
+                },
+                "acf_slope": {
+                    "type": "number",
+                    "description": "Slope of the autocorrelation function (chip/chip)"
+                },
+                "dll_hard_limiter": {
+                    "type": "number",
+                    "description": "Recommended hard limitation for DLL discriminator output (chips)"
+                }
+            },
+            "required": ["hw_channel_id", "carrier_doppler", "code_doppler", "early_late_spacing", "integration_time", "acf_slope"]
+        },
+        "correlation_values": {
+            "type": "object",
+            "description": "I&D values of a hardware channel",
+            "properties": {
+                "hw_channel_id": {
+                    "type": "integer",
+                    "description": "Unique ID of the hardware channel"
+                },
+                "epoch": {
+                    "type": "number",
+                    "description": "Epochs since hardware channel start (epochs)"
+                },
+                "tow": {
+                    "type": "number",
+                    "description": "Transmission time of the correlation values in seconds related to the beginning of the current week"
+                },
+                "carrier_doppler": {
+                    "type": "number",
+                    "description": "Last carrier doppler (Hz)"
+                },
+                "code_doppler": {
+                    "type": "number",
+                    "description": "Last code doppler (chips/s)"
+                },
+                "very_early": {
+                    "type": "object",
+                    "description": "Correlation value at very early correlation point",
+                    "properties": {
+                        "i": {
+                            "type": "number",
+                            "description": "Real part of the correlation"
+                        },
+                        "q": {
+                            "type": "number",
+                            "description": "Imaginary part of the correlation"
+                        }
+                    },
+                    "required": ["i", "q"]
+                },
+                "early": {
+                    "type": "object",
+                    "description": "Correlation value at early correlation point",
+                    "properties": {
+                        "i": {
+                            "type": "number",
+                            "description": "Real part of the correlation"
+                        },
+                        "q": {
+                            "type": "number",
+                            "description": "Imaginary part of the correlation"
+                        }
+                    },
+                    "required": ["i", "q"]
+                },
+                "prompt": {
+                    "type": "object",
+                    "description": "Correlation value at prompt correlation point",
+                    "properties": {
+                        "i": {
+                            "type": "number",
+                            "description": "Real part of the correlation"
+                        },
+                        "q": {
+                            "type": "number",
+                            "description": "Imaginary part of the correlation"
+                        }
+                    },
+                    "required": ["i", "q"]
+                },
+                "late": {
+                    "type": "object",
+                    "description": "Correlation value at late correlation point",
+                    "properties": {
+                        "i": {
+                            "type": "number",
+                            "description": "Real part of the correlation"
+                        },
+                        "q": {
+                            "type": "number",
+                            "description": "Imaginary part of the correlation"
+                        }
+                    },
+                    "required": ["i", "q"]
+                },
+                "very_late": {
+                    "type": "object",
+                    "description": "Correlation value at very late correlation point",
+                    "properties": {
+                        "i": {
+                            "type": "number",
+                            "description": "Real part of the correlation"
+                        },
+                        "q": {
+                            "type": "number",
+                            "description": "Imaginary part of the correlation"
+                        }
+                    },
+                    "required": ["i", "q"]
+                }
+            },
+            "required": ["hw_channel_id", "epoch", "early", "prompt", "late"]
+        },
+        "control_values": {
+            "type": "object",
+            "description": "Code and carrier values to control a hardware channel",
+            "properties": {
+                "hw_channel_id": {
+                    "type": "integer",
+                    "description": "Unique ID of the hardware channel, which sent the IQ values"
+                },
+                "lock_lost": {
+                    "type": "boolean",
+                    "description": "True if tracking of the satellite is lost for the hardware channel, which sent the IQ values"
+                },
+                "value_list": {
+                    "type": "array",
+                    "minItems": 0,
+                    "description": "List of control values for multiple channels",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "hw_channel_id": {
+                                "type": "integer",
+                                "description": "Unique ID of the hardware channel"
                             },
-                            "carrier_doppler":{
-                                "type":"integer",
-                                "description":"Carrier doppler from tracking (Hz)",
+                            "carrier_doppler": {
+                                "type": "integer",
+                                "description": "Carrier doppler from tracking (Hz)"
                             },
-                            "code_doppler":{
-                                "type":"integer",
-                                "description":"Code doppler from tracking (chips/s)",
-                            },
+                            "code_doppler": {
+                                "type": "integer",
+                                "description": "Code doppler from tracking (chips/s)"
+                            }
                         },
-                        "required":["hw_channel_id","carrier_doppler","code_doppler"],
-                    },
-                },
-            },
-            "required":["hw_channel_id","value_list","lock_lost"],
-            "additionalProperties":false,
-        },
-        "imu_measurements":{
-            "type":"object",
-            "properties":{
-                "acceleration":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"(m/s^2)",
-                        },
-                        "y":{
-                            "type":"number",
-                            "description":"(m/s^2)",
-                        },
-                        "z":{
-                            "type":"number",
-                            "description":"(m/s^2)",
-                        },
-                    },
-                    "description":"The acceleration vector as reported from the IMU",
-                },
-                "angular_rate":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"(rad/s)",
-                        },
-                        "y":{
-                            "type":"number",
-                            "description":"(rad/s)",
-                        },
-                        "z":{
-                            "type":"number",
-                            "description":"(rad/s)",
-                        },
-                    },
-                    "description":"The angular rate as reported from the IMU",
-                },
-                "delta_theta":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"(rad)",
-                        },
-                        "y":{
-                            "type":"number",
-                            "description":"(rad)",
-                        },
-                        "z":{
-                            "type":"number",
-                            "description":"(rad)",
-                        },
-                    },
-                    "description":"Integral of angular rate over measurement interval",
-                },
-                "delta_velocity":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"(m/s)",
-                        },
-                        "y":{
-                            "type":"number",
-                            "description":"(m/s)",
-                        },
-                        "z":{
-                            "type":"number",
-                            "description":"(m/s)",
-                        },
-                    },
-                    "description":"Integral of acceleration over measurement interval"
-                },
-                "magnetic_field":{
-                    "type":"object",
-                    "properties":{
-                        "x":{
-                            "type":"number",
-                            "description":"(Gs)",
-                        },
-                        "y":{
-                            "type":"number",
-                            "description":"(Gs)",
-                        },
-                        "z":{
-                            "type":"number",
-                            "description":"(Gs)",
-                        },
-                    },
-                    "description":"The magnetic field as reported from the IMU",
-                },
-                "gps_correlation_timestamp":{
-                    "type":"object",
-                    "properties":{
-                        "gps_tow":{
-                            "type":"number",
-                            "description":"GPS time of week (s)",
-                        },
-                        "gps_week_number":{
-                            "type":"number",
-                            "description":"GPS week number",
-                        },
-                        "pps_beacon_good":{
-                            "type":"boolean",
-                            "description":"If set, GNSS PPS is present",
-                        },
-                        "gps_time_refresh":{
-                            "type":"number",
-                            "description":"PPS pulse counter",
-                        },
-                        "gps_time_initialized":{
-                            "type":"boolean",
-                            "description":"Is set once upon the first valid GPS time record",
-                        },
-                    },
-                    "required":["gnss_tow","gnss_week_number","pps_beacon_good","gps_time_refresh","gps_time_initialized"],
-                },
-                "pressure":{
-                    "type":"number",
-                    "description":"Pressure (hPa)",
-                },
-                "measurement_interval":{
-                    "type":"number",
-                    "description":"(s)",
+                        "required": ["hw_channel_id", "carrier_doppler", "code_doppler"]
+                    }
                 }
             },
-            "additionalProperties":false,
+            "required": ["hw_channel_id", "value_list", "lock_lost"]
         },
+        "imu_measurements": {
+            "type": "object",
+            "properties": {
+                "acceleration": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "(m/s^2)"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "(m/s^2)"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "(m/s^2)"
+                        }
+                    },
+                    "description": "The acceleration vector as reported from the IMU"
+                },
+                "angular_rate": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "(rad/s)"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "(rad/s)"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "(rad/s)"
+                        }
+                    },
+                    "description": "The angular rate as reported from the IMU"
+                },
+                "delta_theta": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "(rad)"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "(rad)"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "(rad)"
+                        }
+                    },
+                    "description": "Integral of angular rate over measurement interval"
+                },
+                "delta_velocity": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "(m/s)"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "(m/s)"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "(m/s)"
+                        }
+                    },
+                    "description": "Integral of acceleration over measurement interval"
+                },
+                "magnetic_field": {
+                    "type": "object",
+                    "properties": {
+                        "x": {
+                            "type": "number",
+                            "description": "(Gs)"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "(Gs)"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "(Gs)"
+                        }
+                    },
+                    "description": "The magnetic field as reported from the IMU"
+                },
+                "gps_correlation_timestamp": {
+                    "type": "object",
+                    "properties": {
+                        "gps_tow": {
+                            "type": "number",
+                            "description": "GPS time of week (s)"
+                        },
+                        "gps_week_number": {
+                            "type": "number",
+                            "description": "GPS week number"
+                        },
+                        "pps_beacon_good": {
+                            "type": "boolean",
+                            "description": "If set, GNSS PPS is present"
+                        },
+                        "gps_time_refresh": {
+                            "type": "number",
+                            "description": "PPS pulse counter"
+                        },
+                        "gps_time_initialized": {
+                            "type": "boolean",
+                            "description": "Is set once upon the first valid GPS time record"
+                        }
+                    },
+                    "required": ["gnss_tow", "gnss_week_number", "pps_beacon_good", "gps_time_refresh", "gps_time_initialized"]
+                },
+                "pressure": {
+                    "type": "number",
+                    "description": "Pressure (hPa)"
+                },
+                "measurement_interval": {
+                    "type": "number",
+                    "description": "(s)"
+                }
+            }
+        }
     },
-    "required":["id","timestamp","protocol"],
-    "additionalProperties":false
+    "required": ["id", "timestamp", "protocol"]
 }
