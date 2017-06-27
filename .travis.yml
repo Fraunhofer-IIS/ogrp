@@ -1,0 +1,7 @@
+language: php
+
+install:
+  - composer require seld/jsonlint
+
+script:
+  - vendor/bin/jsonlint schema/ogrp.jsd
