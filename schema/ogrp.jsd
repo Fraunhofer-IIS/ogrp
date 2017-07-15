@@ -17,37 +17,11 @@
         },
         "timestamp":{
             "type":"number",
-            "description":"Seconds since 1.1.1970 0:00 (UTC) (s)"
+            "description":"Seconds since 1.1.1970 0:00 time_reference (s)"
         },
-        "timestamp_gpst":{
-            "type":"object",
-            "properties":{
-                "tow":{
-                    "type":"number",
-                    "description":"Seconds in current week (GPS time) (s)"
-                },
-                "week":{
-                    "type":"integer",
-                    "description":"Full weeks since start of GPS time (number of weeks)"
-                }
-            },
-            "required":["tow","week"],
-            "additionalProperties":false
-        },
-        "timestamp_gst":{
-            "type":"object",
-            "properties":{
-                "tow":{
-                    "type":"number",
-                    "description":"Seconds in current week (Galileo time) (s)"
-                },
-                "week":{
-                    "type":"integer",
-                    "description":"Full weeks since start of Galileo time (number of weeks)"
-                }
-            },
-            "required":["tow","week"],
-            "additionalProperties":false
+        "time_reference":{
+            "enum":["UTC","GPST","GST","GLONASST","BDT"],
+            "description":"Time reference of timestamp",
         },
         "hw_timestamp":{
             "type":"integer",
@@ -981,5 +955,5 @@
             }
         }
     },
-    "required": ["id", "timestamp", "protocol"]
+    "required": ["id", "timestamp", "time_reference", "protocol"]
 }
