@@ -5,7 +5,7 @@
     "type":"object",
     "properties":{
         "protocol":{
-            "enum":["OGRP1_1"],
+            "enum":["OGRP1_2"],
             "description":"OGRP version"
         },
         "id":{
