@@ -54,7 +54,7 @@
             "description":"Hardware timestamp, which is required for external tracking (clock ticks, overflow at 2^32)"
         },
         "sw_version": {
-            "type": "number"
+            "type": "string"
         },
         "module": {
             "type": "string",
