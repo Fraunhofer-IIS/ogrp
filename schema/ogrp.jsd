@@ -21,7 +21,7 @@
         },
         "time_reference":{
             "enum":["UTC","GPST","GST","GLONASST","BDT"],
-            "description":"Time reference of timestamp",
+            "description":"Time reference of timestamp"
         },
         "hw_timestamp":{
             "type":"integer",
@@ -540,36 +540,36 @@
             "required": ["gnss", "a_0", "a_1", "delta_ls", "reference_time", "week_lsf", "day_number", "delta_lsf"],
             "description": "GNSS-UTC conversion parameters"
         },
-        "ggto_parameter":{
+        "ggto_parameter": {
             "type":"object",
-            "properties":{
-                "a_0":{
-                    "type":"number",
-                    "description":"Polynom constant value (s)"
+            "properties": {
+                "a_0": {
+                    "type": "number",
+                    "description": "Polynom constant value (s)"
                 },
-                "a_1":{
-                    "type":"number",
-                    "description":"Polynom linear value (s/s)"
+                "a_1": {
+                    "type": "number",
+                    "description": "Polynom linear value (s/s)"
                 },
-                "reference_time":{
-                    "type":"object",
-                    "properties":{
-                        "tow":{
-                            "type":"number",
-                            "description":"Reference time of week for GGTO data (s)",
+                "reference_time": {
+                    "type": "object",
+                    "properties": {
+                        "tow": {
+                            "type": "number",
+                            "description": "Reference time of week for GGTO data (s)"
                         },
-                        "week":{
-                            "type":"integer",
-                            "description":"Reference week number for GGTO data (week)",
-                        },
+                        "week": {
+                            "type": "integer",
+                            "description": "Reference week number for GGTO data (week)"
+                        }
                     },
-                    "required":["tow","week"],
-                    "additionalProperties":false,
-                },
+                    "required": ["tow", "week"],
+                    "additionalProperties": false
+                }
             },
-            "required":["a_0","a_1","reference_time"],
-            "additionalProperties":false,
-            "description":"GPS-Galileo system time conversion parameters",
+            "required": ["a_0", "a_1", "reference_time"],
+            "additionalProperties": false,
+            "description": "GPS-Galileo system time conversion parameters"
         },
         "channel_measurements": {
             "type": "array",
