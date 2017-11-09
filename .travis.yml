@@ -2,8 +2,12 @@ language: php
 
 install:
   - composer require seld/jsonlint
+  - composer require justinrainbow/json-schema
 
 script:
   - vendor/bin/jsonlint draft-00/schema
+  - vendor/bin/jsonlint draft-00/measurement.ogrp
   - vendor/bin/jsonlint draft-01/schema
-  - vendor/bin/jsonlint examples/measurement.ogrp
+  - vendor/bin/jsonlint draft-01/measurement.ogrp
+  - vendor/bin/validate-json draft-00/measurement.ogrp draft-00/schema
+  - vendor/bin/validate-json draft-01/measurement.ogrp draft-01/schema
