@@ -1,0 +1,32 @@
+{
+	"$schema": "https://fraunhofer-iis.github.io/ogrp/draft-00/schema#",
+	"protocol": "OGRP1",
+	"timestamp": 101,
+	"time_status": "SYSTEM",
+	"channel_measurements": [{
+			"doppler": 1200,
+			"channel_number": 1,
+			"gnss": "GPS",
+			"locktime": 0,
+			"carrier_phase": 0,
+			"channel_state": "IDLE",
+			"signal_type": "L1CA",
+			"snr": 32,
+			"satellite_id": 1,
+			"pseudo_range": 20000000
+		},
+		{
+			"doppler": -1100.3,
+			"channel_number": 1,
+			"gnss": "GALILEO",
+			"locktime": 0,
+			"carrier_phase": -123.4,
+			"channel_state": "SYNCED",
+			"signal_type": "E5aI",
+			"snr": 45.5,
+			"satellite_id": 50,
+			"pseudo_range": 20340000
+		}
+	],
+	"id": "measurement"
+}
