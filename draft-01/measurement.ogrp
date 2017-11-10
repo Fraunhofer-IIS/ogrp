@@ -1,5 +1,5 @@
 {
-	"$schema": "https://fraunhofer-iis.github.io/ogrp/draft-00/schema#",
+	"$schema": "https://fraunhofer-iis.github.io/ogrp/draft-01/schema#",
 	"protocol": "OGRP1_2",
 	"timestamp": 101,
 	"time_status": "SYSTEM",
