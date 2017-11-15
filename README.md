@@ -21,7 +21,7 @@ may it be output of raw measurements from receivers over a physical wire
 connection but also supporting RPC (remote procedure call) like
 [JSON-RPC](https://de.wikipedia.org/wiki/JSON-RPC).
 
-OGRP is a protocol based on JSON ([RFC4627](https://www.ietf.org/rfc/rfc4627.txt)).
+OGRP is a protocol based on JSON [[RFC4627](#RFC4627)].
 
 For the use in RPC, zerorpc (<http://zerorpc.dotcloud.com/>) is
 recommended as a transport mechanism. Other mechanisms
@@ -46,8 +46,7 @@ document are to be interpreted as described in [RFC2119].
 The underlying format used for OGRP is JSON. Consequently, terms and
 types are to be interpreted as described in section 1 of [RFC4627].
 
-The OGRP protocol definition uses the ABNF syntax
-(<http://www.ietf.org/rfc/rfc5234.txt>)
+The OGRP protocol definition uses the ABNF syntax [[RFC5234](#RFC5234)].
 where appropriate but mixes with examples in JSON syntax.
 
 License information
@@ -155,8 +154,10 @@ title element in the schema.
 Usage
 =====
 
-Applications using OGRP for input or output should define the supported messages as [JSON Schema](http://json-schema.org/).
-An example for a PVT application's minimum input data could be:
+Applications using OGRP for input or output should define the supported messages
+as JSON Schema [[json-schema](#json-schema)].
+
+An example how to extend the OGRP core schema:
 
 ```JSON
 {
@@ -203,7 +204,7 @@ An example for a PVT application's minimum input data could be:
 Security considerations
 =======================
 
-See JSON considerations on this topic in [RFC4627].
+See JSON considerations on this topic in [[RFC4627](#RFC4627)].
 
 No further security mechanisms are designed into OGRP.
 
@@ -211,8 +212,17 @@ No further security mechanisms are designed into OGRP.
 References
 ==========
 
- * [RFC2119]
-[RFC2119]: <http://www.ietf.org/rfc/rfc2119.txt> "RFC2119"
- * [RFC4627]
-[RFC4627]: <http://www.ietf.org/rfc/rfc4627.txt> "RFC4627"
-
+ * <a name="RFC2119">**[RFC2119]**</a>:  
+   Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels",  
+   BCP 14, RFC 2119, March 1997, <https://tools.ietf.org/html/rfc2119>.
+ * <a name="RFC4627">**[RFC4627]**</a>:  
+   Crockford, D., "The application/json Media Type for JavaScript Object Notation (JSON)",  
+   RFC 4627, DOI 10.17487/RFC4627, July 2006, <https://tools.ietf.org/html/rfc4627>
+ * <a name="RFC5234">**[RFC5234]**</a>:  
+   Crocker, D., Ed., and P. Overell, "Augmented BNF for Syntax Specifications: ABNF",  
+   STD 68, RFC 5234, DOI 10.17487/RFC5234, January 2008, <https://tools.ietf.org/html/rfc5234>.
+ * <a name="json-schema">**[json-schema]**</a>:  
+   Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",  
+   draft-wright-json-schema-01 (work in progress), October 2016.  
+   <https://tools.ietf.org/html/draft-wright-json-schema-01>  
+   <http://json-schema.org/>
