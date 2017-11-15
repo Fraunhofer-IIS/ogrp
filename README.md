@@ -23,10 +23,10 @@ connection but also supporting RPC (remote procedure call) like
 
 OGRP is a protocol based on JSON [[RFC4627](#RFC4627)].
 
-For the use in RPC, zerorpc (<http://zerorpc.dotcloud.com/>) is
-recommended as a transport mechanism. Other mechanisms
-may be used for non-RPC, e.g. plain TCP socket, a file, a serial line with a
-wrapping wire protocol all using [NDJ](http://en.wikipedia.org/wiki/Line_Delimited_JSON).
+For the use in RPC, zerorpc (<http://zerorpc.dotcloud.com/>) is recommended as a transport mechanism.
+Protocols that already provide message framing should use one JSON object per message.
+Stream oriented protocols, e.g. a plain TCP socket, a file, a serial line, should use
+the media type "application/json-seq". See [[RFC7464](#RFC7464)].
 Files containing OGRP should have the filename extension *.ogrp*.
 
 OGRP is meant to be extendable and future-proof rather than optimized
@@ -221,6 +221,9 @@ References
  * <a name="RFC5234">**[RFC5234]**</a>:  
    Crocker, D., Ed., and P. Overell, "Augmented BNF for Syntax Specifications: ABNF",  
    STD 68, RFC 5234, DOI 10.17487/RFC5234, January 2008, <https://tools.ietf.org/html/rfc5234>.
+ * <a name="RFC7464">**[RFC7464]**</a>:  
+   Williams, N., "JavaScript Object Notation (JSON) Text Sequences",  
+   RFC 7464, DOI 10.17487/RFC7464, February 2015, <https://tools.ietf.org/html/rfc7464>
  * <a name="json-schema">**[json-schema]**</a>:  
    Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",  
    draft-wright-json-schema-01 (work in progress), October 2016.  
