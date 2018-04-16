@@ -58,6 +58,23 @@ This work is licensed under a <a rel="license" href="http://creativecommons.org/
 
 Reasoning: [Licenses for Protocols](http://hintjens.com/blog:41)
 
+OGRP Trademark Policy
+---------------------
+Fraunhofer owns the registered EU trademark „OGRP“ (No 015314545). This chapter outlines the policy of Fraunhofer regarding the use of the trademark „OGRP“. Any use of the trademark „OGRP“ must be in accordance with this policy. 
+Fraunhofer encourages the use of the trademark „OGRP“ if you are implementing the Open Gnss Receiver Protocol in your products. However, any use of the  trademark „OGRP“ must comply with all of the conditions set forth in this Trademark Policy as follows:
+
+1. Any use of the trademark „OGRP“ depends on your compliance with the CC-BY-SA 4.0 license for the specification of the Open Gnss Receiver Protocol. If you do not comply with the CC-BY-SA 4.0 license for the use of the specification of the Open Gnss Receiver Protocol you are not permitted to use the trademark „OGRP“ for your products and your right to use the trademark terminates automatically.
+For the avoidance of doubt, implementations of the Open Gnss Receiver Protocol are not covered by the CC-BY-SA 4.0 license. This license is limited to the specification of the protocol as published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch and Adapted Material thereof (as defined in the CC-BY-SA 4.0 license).
+Any use of the trademark „OGRP“ that is permitted by statutory law shall not be restricted by this trademark policy.
+
+1. You may distribute products implementing the OGRP specification as published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch or any other repository Fraunhofer may use in the future for the specification of OGRP. In this case no specific requirements need to be met for the use of the trademark „OGRP“.
+
+1. You may distribute products implementing the OGRP specification in a modified version than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch, or any other repository Fraunhofer may use in the future for the specification of OGRP.  In this case you have to commit your modifications at https://github.com/Fraunhofer-IIS/ogrp under the CC-BY-SA 4.0 license to allow any third party the use of the modified specification.  
+
+1. You may publish modified versions of the OGRP specification than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch under the CC-BY-SA 4.0 license. You are encouraged to inform Fraunhofer about such publications at https://github.com/Fraunhofer-IIS/ogrp.
+
+
+
 Maturity
 --------
 
