@@ -419,11 +419,11 @@
                 },
                 "clock_bias": {
                     "type": "number",
-                    "description": "The calculated clock error"
+                    "description": "The calculated clock error (s)"
                 },
                 "clock_drift": {
                     "type": "number",
-                    "description": "The variation of the clock error in the last PVT interval"
+                    "description": "The variation of the clock error in the last PVT interval (s/s)"
                 },
                 "hdop": {
                     "type": "number",
@@ -484,7 +484,7 @@
                     },
                     "elevation": {
                         "type": "number",
-                        "description": "Elevation of the satellite"
+                        "description": "Elevation of the satellite 0..90 (degree)"
                     }
                 },
                 "required": ["satellite_id", "gnss"]
