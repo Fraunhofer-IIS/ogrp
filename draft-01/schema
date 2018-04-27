@@ -375,7 +375,7 @@
                 },
                 "coordinate_system": {
                     "enum": ["ECEF", "WGS84"],
-                    "description": "In case of WGS84 the coordinates are x:lat, y:lon in radian, z is elliptical"
+                    "description": "In case of WGS84 the coordinates are x:lat, y:lon in degree and z in meter"
                 },
                 "precision": {
                     "enum": ["2D", "3D", "RTK_FIX", "RTK_FLOAT", "DGPS", "SBAS", "NO_FIX"],
