@@ -610,7 +610,7 @@
                         "enum": ["GPS", "GALILEO", "GLONASS", "SBAS"]
                     },
                     "signal_type": {
-                        "enum": ["L1CA", "L2CA", "L2P_codeless", "L2CM", "L5I", "L5Q", "E5aI", "P1", "P2", "P5", "E1", "E5", "E6", "E5a", "E5b"]
+                        "enum": ["L1CA", "L2CA", "L2P_codeless", "L2CM", "L2CL", "L2C", "L5I", "L5Q", "L5", "E5aI", "E5aQ", "E5a", "E5bI", "E5bQ", "E1B", "E1C", "E1", "E5b", "P1", "P2", "P5", "E5", "E6"]
                     },
                     "doppler": {
                         "type": "number",
