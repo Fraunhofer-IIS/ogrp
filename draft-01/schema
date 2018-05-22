@@ -159,7 +159,7 @@
                 },
                 "clock_reference": {
                     "type": "integer",
-                    "description": "Subframe 1, clock Data reference time (s)"
+                    "description": "GPS: Subframe 1, clock Data reference time; Galileo E1/E5b (s)"
                 },
                 "week_number": {
                     "type": "integer",
@@ -167,19 +167,39 @@
                 },
                 "group_delay": {
                     "type": "number",
-                    "description": "Subframe 1, estimated group delay differential (s)"
+                    "description": "GPS: Subframe 1, estimated group delay differential; Galileo: Group delay E1/E5b (s)"
                 },
                 "af_2": {
                     "type": "number",
-                    "description": "Subframe 1, polynomal coefficient (s/s*s)"
+                    "description": "GPS: Subframe 1, polynomal coefficient; Galileo: E1/E5b (s/s*s)"
                 },
                 "af_1": {
                     "type": "number",
-                    "description": "Subframe 1, polynomal coefficient (s/s)"
+                    "description": "GPS: Subframe 1, polynomal coefficient; Galileo: E1/E5b (s/s)"
                 },
                 "af_0": {
                     "type": "number",
-                    "description": "Subframe 1, polynomal coefficient (s)"
+                    "description": "GPS: Subframe 1, polynomal coefficient; Galileo: E1/E5b (s)"
+                },
+                "clock_reference_e1e5a": {
+                    "type": "integer",
+                    "description": "Galileo clock Data reference time (s)"
+                },
+                "group_delay_e1e5a": {
+                    "type": "number",
+                    "description": "Galileo group delay E1/E5a (s)"
+                },
+                "af_2_e1e5a": {
+                    "type": "number",
+                    "description": "Galileo SV clock drift rate correction coefficient E1/E5a (s/(s*s))"
+                },
+                "af_1_e1e5a": {
+                    "type": "number",
+                    "description": "Galileo SV clock drift correction coefficient E1/E5a (s/s)"
+                },
+                "af_0_e1e5a": {
+                    "type": "number",
+                    "description": "Galileo SV clock bias correction coefficient E1/E5a (s)"
                 },
                 "ephemeris_reference": {
                     "type": "integer",
