@@ -717,6 +717,10 @@
                     "type": "number",
                     "description": "Epochs since hardware channel start (epochs)"
                 },
+                "integrated_epochs": {
+                    "type": "number",
+                    "description": "Integrated time in epochs"
+                },
                 "tow": {
                     "type": "number",
                     "description": "Transmission time of the correlation values in seconds related to the beginning of the current week"
