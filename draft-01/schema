@@ -12,7 +12,7 @@
             "type":"string"
         },
         "time_status":{
-            "enum":["SYSTEM","EXTERNAL","FREE_RUNNING","FINESTEERING","GNSS_SYNCED"],
+            "enum":["SYSTEM","EXTERNAL","FREE_RUNNING","FINESTEERING","GPS_SYNCED","GALILEO_SYNCED"],
             "description":"Timestamp source"
         },
         "timestamp":{
