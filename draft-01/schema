@@ -445,6 +445,10 @@
                     "type": "number",
                     "description": "The variation of the clock error in the last PVT interval (s/s)"
                 },
+                "vdop": {
+                    "type": "number",
+                    "description": "The vertical dilution of precision"
+                },
                 "hdop": {
                     "type": "number",
                     "description": "The horizontal dilution of precision"
