@@ -509,6 +509,10 @@
                     "elevation": {
                         "type": "number",
                         "description": "Elevation of the satellite 0..90 (degree)"
+                    },
+                    "authentication_status": {
+                        "type": "number",
+                        "description": "Galileo OSNMA authentication status (-3: Not available, -2: Internal error, -1: Authentication failure, 0: Initializing, 1: Authenticated)"
                     }
                 },
                 "required": ["satellite_id", "gnss"]
