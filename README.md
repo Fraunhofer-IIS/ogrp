@@ -153,7 +153,8 @@ channel_measurement = {
     "locktime": float, ; (seconds)
     "pseudorange": float, ; (meters)
     "code_phase": float, ; (chips)
-    "channel_number": int ; starting at 0
+    "sw_channel_number": int ; starting at 0
+    "hw_channel_number": int ; starting at 0
 }
 
 channel_state = string, ; "IDLE" / "SEARCHING" / "PULL_IN" / "LOCKED" / "SYNCED"

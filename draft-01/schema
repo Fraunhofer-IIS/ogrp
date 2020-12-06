@@ -625,9 +625,15 @@
                     "channel_state": {
                         "enum": ["IDLE", "SEARCHING", "PULL_IN", "LOCKED", "SYNCED"]
                     },
-                    "channel_number": {
+                    "sw_channel_number": {
                         "type": "integer",
-                        "minimum": 1
+                        "minimum": 0,
+                        "description": "SW channel number"
+                    },
+                    "hw_channel_number": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "description": "HW channel number"
                     },
                     "frequency_number": {
                         "type": "integer",

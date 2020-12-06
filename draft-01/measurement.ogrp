@@ -6,7 +6,8 @@
 	"time_reference": "UTC",
 	"channel_measurements": [{
 			"doppler": 1200,
-			"channel_number": 1,
+			"sw_channel_number": 0,
+			"hw_channel_number": 0,
 			"gnss": "GPS",
 			"locktime": 0,
 			"carrier_phase": 0,
@@ -18,7 +19,8 @@
 		},
 		{
 			"doppler": -1100.3,
-			"channel_number": 1,
+			"sw_channel_number": 1,
+			"hw_channel_number": 3,
 			"gnss": "GALILEO",
 			"locktime": 0,
 			"carrier_phase": -123.4,
