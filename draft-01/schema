@@ -401,6 +401,10 @@
                     "enum": ["2D", "3D", "RTK_FIX", "RTK_FLOAT", "DGPS", "SBAS", "NO_FIX"],
                     "description": "Calculation precision "
                 },
+                "algorithm": {
+                    "enum": ["BANCROFT", "SIMPLE_LEAST_SQUARES", "EKF"],
+                    "description": "Algorithm for calculation "
+                },
                 "position": {
                     "type": "object",
                     "properties": {
