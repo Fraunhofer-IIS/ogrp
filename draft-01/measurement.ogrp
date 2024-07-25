@@ -1,6 +1,6 @@
 {
 	"$schema": "https://fraunhofer-iis.github.io/ogrp/draft-01/schema#",
-	"protocol": "OGRP1_2",
+	"protocol": "OGRP1_3",
 	"timestamp": 101,
 	"time_status": "SYSTEM",
 	"time_reference": "UTC",
@@ -15,7 +15,8 @@
 			"signal_type": "L1CA",
 			"snr": 32,
 			"satellite_id": 1,
-			"pseudo_range": 20000000
+			"pseudo_range": 20000000,
+                        "time_of_transmission" : 0.0
 		},
 		{
 			"doppler": -1100.3,
@@ -28,7 +29,8 @@
 			"signal_type": "E5aI",
 			"snr": 45.5,
 			"satellite_id": 50,
-			"pseudo_range": 20340000
+			"pseudo_range": 20340000,
+                        "time_of_transmission" : 0.0
 		}
 	],
 	"id": "measurement"

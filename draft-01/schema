@@ -5,7 +5,7 @@
     "type":"object",
     "properties":{
         "protocol":{
-            "enum":["OGRP1_2"],
+            "enum":["OGRP1_3"],
             "description":"OGRP version"
         },
         "id":{
@@ -464,6 +464,10 @@
                 "gdop": {
                     "type": "number",
                     "description": "The geometric dilution of precision"
+                },
+                "frequency_band": {
+                    "enum": ["L1", "S", "L2", "E5c", "E6", "L5E5a", "E5 AltBOC"],
+                    "description": "Frequency band or signal components used for PVT"
                 }
             },
             "required": ["coordinate_system", "precision", "position"]
@@ -510,9 +514,27 @@
                         "type": "number",
                         "description": "Elevation of the satellite 0..90 (degree)"
                     },
-                    "authentication_status": {
+                    "authentication_status_osnma": {
                         "type": "number",
                         "description": "Galileo OSNMA authentication status (-3: Not available, -2: Internal error, -1: Authentication failure, 0: Initializing, 1: Authenticated)"
+                    },
+                    "range_authenticated_signals": {
+                        "type": "array",
+                        "minItems": 0,
+                        "maxItems": 3,
+                        "items": {
+                            "enum": ["E1", "E5a", "E6"],
+                            "description": "List of authenticated signal components"
+                        }
+                    },
+                    "spoofed_signals": {
+                        "type": "array",
+                        "minItems": 0,
+                        "maxItems": 3,
+                        "items": {
+                            "enum": ["E1", "E5a", "E6"],
+                            "description": "List of spoofed signal components"
+                        }
                     }
                 },
                 "required": ["satellite_id", "gnss"]
@@ -673,6 +695,10 @@
                     "corrected_pseudo_range": {
                         "type": "number",
                         "description": "Pseudorange after applying clock and atmospheric correction (in meter)"
+                    },
+                    "time_of_transmission": {
+                        "type": "number",
+                        "description": "Estimated GNSS time of week of the signal transmission"
                     }
                 },
                 "required": ["carrier_phase", "pseudo_range", "satellite_id", "gnss"],
