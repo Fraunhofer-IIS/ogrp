@@ -1,0 +1,37 @@
+name: Validate JSONs
+
+on: [push, pull_request]
+
+jobs:
+  verify-json-validation:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+
+      - name: Validate draft-00 schema
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: json-schema
+          files: draft-00/schema
+
+      - name: Validate draft-00 OGRPs
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: draft-00/schema
+          files: draft-00/*.ogrp
+
+      - name: Validate draft-01 schema
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: json-schema
+          files: draft-01/schema
+
+      - name: Validate draft-01 OGRPs
+        uses: dsanders11/json-schema-validate-action@v1.2.0
+        with:
+          schema: draft-01/schema
+          files: draft-01/*.ogrp
