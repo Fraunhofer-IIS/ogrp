@@ -60,7 +60,7 @@ Reasoning: [Licenses for Protocols](http://hintjens.com/blog:41)
 
 OGRP Trademark Policy
 ---------------------
-Fraunhofer owns the registered EU trademark „OGRP“ (No 015314545). This chapter outlines the policy of Fraunhofer regarding the use of the trademark „OGRP“. Any use of the trademark „OGRP“ must be in accordance with this policy. 
+Fraunhofer owns the registered EU trademark „OGRP“ (No 015314545). This chapter outlines the policy of Fraunhofer regarding the use of the trademark „OGRP“. Any use of the trademark „OGRP“ must be in accordance with this policy.
 Fraunhofer encourages the use of the trademark „OGRP“ if you are implementing the Open Gnss Receiver Protocol in your products. However, any use of the  trademark „OGRP“ must comply with all of the conditions set forth in this Trademark Policy as follows:
 
 1. Any use of the trademark „OGRP“ depends on your compliance with the CC-BY-SA 4.0 license for the specification of the Open Gnss Receiver Protocol. If you do not comply with the CC-BY-SA 4.0 license for the use of the specification of the Open Gnss Receiver Protocol you are not permitted to use the trademark „OGRP“ for your products and your right to use the trademark terminates automatically.
@@ -69,7 +69,7 @@ Any use of the trademark „OGRP“ that is permitted by statutory law shall not
 
 1. You may distribute products implementing the OGRP specification as published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch or any other repository Fraunhofer may use in the future for the specification of OGRP. In this case no specific requirements need to be met for the use of the trademark „OGRP“.
 
-1. You may distribute products implementing the OGRP specification in a modified version than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch, or any other repository Fraunhofer may use in the future for the specification of OGRP.  In this case you have to commit your modifications at https://github.com/Fraunhofer-IIS/ogrp under the CC-BY-SA 4.0 license to allow any third party the use of the modified specification.  
+1. You may distribute products implementing the OGRP specification in a modified version than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch, or any other repository Fraunhofer may use in the future for the specification of OGRP.  In this case you have to commit your modifications at https://github.com/Fraunhofer-IIS/ogrp under the CC-BY-SA 4.0 license to allow any third party the use of the modified specification.
 
 1. You may publish modified versions of the OGRP specification than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch under the CC-BY-SA 4.0 license. You are encouraged to inform Fraunhofer about such publications at https://github.com/Fraunhofer-IIS/ogrp.
 
@@ -230,20 +230,20 @@ No further security mechanisms are designed into OGRP.
 References
 ==========
 
- * <a name="RFC2119">**[RFC2119]**</a>:  
-   Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels",  
+ * <a name="RFC2119">**[RFC2119]**</a>:
+   Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels",
    BCP 14, RFC 2119, March 1997, <https://tools.ietf.org/html/rfc2119>.
- * <a name="RFC4627">**[RFC4627]**</a>:  
-   Crockford, D., "The application/json Media Type for JavaScript Object Notation (JSON)",  
+ * <a name="RFC4627">**[RFC4627]**</a>:
+   Crockford, D., "The application/json Media Type for JavaScript Object Notation (JSON)",
    RFC 4627, DOI 10.17487/RFC4627, July 2006, <https://tools.ietf.org/html/rfc4627>
- * <a name="RFC5234">**[RFC5234]**</a>:  
-   Crocker, D., Ed., and P. Overell, "Augmented BNF for Syntax Specifications: ABNF",  
+ * <a name="RFC5234">**[RFC5234]**</a>:
+   Crocker, D., Ed., and P. Overell, "Augmented BNF for Syntax Specifications: ABNF",
    STD 68, RFC 5234, DOI 10.17487/RFC5234, January 2008, <https://tools.ietf.org/html/rfc5234>.
- * <a name="RFC7464">**[RFC7464]**</a>:  
-   Williams, N., "JavaScript Object Notation (JSON) Text Sequences",  
+ * <a name="RFC7464">**[RFC7464]**</a>:
+   Williams, N., "JavaScript Object Notation (JSON) Text Sequences",
    RFC 7464, DOI 10.17487/RFC7464, February 2015, <https://tools.ietf.org/html/rfc7464>
- * <a name="json-schema">**[json-schema]**</a>:  
-   Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",  
-   draft-wright-json-schema-01 (work in progress), October 2016.  
-   <https://tools.ietf.org/html/draft-wright-json-schema-01>  
+ * <a name="json-schema">**[json-schema]**</a>:
+   Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",
+   draft-wright-json-schema-01 (work in progress), October 2016.
+   <https://tools.ietf.org/html/draft-wright-json-schema-01>
    <http://json-schema.org/>
