@@ -179,8 +179,8 @@ An example how to extend the OGRP core schema:
 
 ```JSON
 {
-    "id": "http://example.org/pvt-input-schema#",
-    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "http://example.org/pvt-input-schema#",
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "description": "Minimum schema for a PVT application",
     "type": "object",
     "properties": {
@@ -244,6 +244,6 @@ References
    RFC 7464, DOI 10.17487/RFC7464, February 2015, <https://tools.ietf.org/html/rfc7464>
  * <a name="json-schema">**[json-schema]**</a>:
    Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",
-   draft-wright-json-schema-01 (work in progress), October 2016.
-   <https://tools.ietf.org/html/draft-wright-json-schema-01>
+   draft-handrews-json-schema-01 (work in progress), March 2018.
+   <https://json-schema.org/draft-07/draft-handrews-json-schema-01>
    <http://json-schema.org/>
