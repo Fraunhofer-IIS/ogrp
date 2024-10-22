@@ -99,7 +99,8 @@
                 },
                 "coords": {
                     "type": "array",
-                    "numItems": 3,
+                    "minItems": 3,
+                    "maxItems": 3,
                     "description": "Ephemeris, coordinates (km)",
                     "items": {
                         "type": "number"
@@ -107,7 +108,8 @@
                 },
                 "velocities": {
                     "type": "array",
-                    "numItems": 3,
+                    "minItems": 3,
+                    "maxItems": 3,
                     "description": "Ephemeris, velocities (km/s)",
                     "items": {
                         "type": "number"
@@ -115,7 +117,8 @@
                 },
                 "accelarations": {
                     "type": "array",
-                    "numItems": 3,
+                    "minItems": 3,
+                    "maxItems": 3,
                     "description": "Ephemeris, accelarations (km/s*s)",
                     "items": {
                         "type": "number"
@@ -346,7 +349,8 @@
             "properties": {
                 "amplitude": {
                     "type": "array",
-                    "numItems": 4,
+                    "minItems": 4,
+                    "maxItems": 4,
                     "description": "Coefficients of cubic equation, amplitude of vertical delay (s..s/semicircles^3)",
                     "items": {
                         "type": "number"
@@ -354,7 +358,8 @@
                 },
                 "period": {
                     "type": "array",
-                    "numItems": 4,
+                    "minItems": 4,
+                    "maxItems": 4,
                     "description": "Coefficients of cubic equation, modelperiod (s..s/semicircles^3)",
                     "items": {
                         "type": "number"
@@ -369,7 +374,8 @@
             "properties": {
                 "effective_ionisation_level": {
                     "type": "array",
-                    "numItems": 3,
+                    "minItems": 3,
+                    "maxItems": 3,
                     "description": "Effective ionisation level 1st..3rd order of Nequick model (sfu..sfu/deg^2)",
                     "items": {
                         "type": "number"
@@ -377,7 +383,8 @@
                 },
                 "disturbance": {
                     "type": "array",
-                    "numItems": 5,
+                    "minItems": 5,
+                    "maxItems": 5,
                     "description": "Disturbance flags of the 5 regions",
                     "items": {
                         "type": "boolean"
