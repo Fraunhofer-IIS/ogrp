@@ -3,7 +3,7 @@ OGRP
 
 The Open Gnss Receiver Protocol (<http://fraunhofer-iis.github.io/ogrp/>).
 
-[![Build Status](https://travis-ci.org/Fraunhofer-IIS/ogrp.png?branch=master)](http://travis-ci.org/Fraunhofer-IIS/ogrp)
+[![Build Status](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml/badge.svg?branch=master)](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml)
 
 Introduction
 ============
