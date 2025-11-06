@@ -1,0 +1,21 @@
+{
+    "$schema": "https://fraunhofer-iis.github.io/ogrp/next/pvt-message",
+    "$epoch": "495a2464-baea-11f0-8de9-0242ac120002",
+    "pvt": {
+        "fix": "3D",
+        "datum": { "frame": "WGS84" },
+        "position": { "x": 123456.789, "y": -543.21, "z": 0.0 },
+        "velocity": { "vx": 15.1, "vy": 2.4, "vz": 1.2 },
+        "time": {
+            "tai": "2024-05-01T12:00:37Z",
+            "gpst": { "rollovers": 2, "week": 1023, "tow_ms": 12000 },
+            "gst":  { "week": 2047, "tow_ms": 12000 }
+        },
+        "covariance": {
+            "position": { "tt": 1.0, "xx": 2.0, "yy": 3.0, "zz": 4.0, "xt": 0.1, "xy": -0.2, "xz": 0.3, "yt": -0.4, "yz": 0.5, "zt": -0.6 },
+            "velocity": { "dtdt": 1.0, "vxvx": 2.0, "vyvy": 3.0, "vzvz": 4.0, "vxdt": 0.1, "vxvy": -0.2, "vxvz": 0.3, "vydt": -0.4, "vyvz": 0.5, "vzdt": -0.6 }
+        },
+        "algorithm": "Least-Squares"
+    },
+    "x-foo": "bar"
+}

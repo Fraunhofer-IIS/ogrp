@@ -7,6 +7,8 @@ type: object
 allOf:
   - $ref: '#/$defs/BaseProperties'
   - $ref: '#/$defs/CustomProperties'
+properties:
+  pvt: { $ref: './pvt.schema.yaml' }
 
 $defs:
   BaseProperties:
