@@ -1,37 +1,50 @@
-name: Validate JSONs
+name: Validate JSON Schema
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ next ]
+  pull_request:
+    branches: [ next ]
 
 jobs:
-  verify-json-validation:
+  validate-json:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+
     steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Validate draft-00 schema
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: json-schema
-          files: draft-00/schema
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
 
-      - name: Validate draft-00 OGRPs
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: draft-00/schema
-          files: draft-00/*.ogrp
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/pip
+          ${{ env.pythonLocation }}/bin
+          ${{ env.pythonLocation }}/lib/python*/site-packages
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
-      - name: Validate draft-01 schema
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: json-schema
-          files: draft-01/schema
+    - name: Install check-jsonschema
+      run: |
+        python -m pip install --upgrade pip
+        pip install check-jsonschema
 
-      - name: Validate draft-01 OGRPs
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: draft-01/schema
-          files: draft-01/*.ogrp
+    - name: Validate JSON files
+      run: |
+        shopt -s nullglob
+        for json_file in examples/*.json; do
+          schema_file="$(basename "$json_file" .json).schema.yaml"
+          if [[ -f "$schema_file" ]]; then
+            echo "Validating $json_file against $schema_file"
+            check-jsonschema --schemafile "$schema_file" "$json_file"
+          else
+            echo "Error: No schema found for $json_file"
+            exit 1
+          fi
+        done

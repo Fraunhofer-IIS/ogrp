@@ -1,0 +1,58 @@
+name: Publish Next Schemas
+
+on:
+  push:
+    branches: [ "next" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy-next:
+    name: Build and Deploy Next Schemas to GitHub Pages
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: https://fraunhofer-iis.github.io/ogrp/next/
+      PUBLISH_DIR: public
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create publish dir and create index
+        shell: bash
+        run: |
+          rm -rf "$PUBLISH_DIR"
+          mkdir -p "$PUBLISH_DIR"
+          cp README.md "$PUBLISH_DIR/index.md"
+
+      - name: Convert YAML schema to JSON
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            # Convert *.schema.yaml under next/ into public/next
+            while IFS= read -r -d '' f; do
+              out="$PUBLISH_DIR/${f%.schema.yaml}" # drop ".schema.yaml"
+              echo "Converting $f to $out"
+              mkdir -p "$(dirname "$out")"
+              yq -o=json '.' "$f" > "$out"
+              yq eval '(.. | select(has("$ref"))."$ref") |= sub("\.schema\.yaml", "")' -o=json -i $out
+              yq eval '(.. | select(has("$id"))."$id") |= sub("^(.*)\.schema\.yaml$", "'${BASE_URL}'$1")' -o=json -i $out
+            done < <(find . -type f -name '*.schema.yaml' -print0)
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.PUBLISH_DIR }}
+          publish_branch: gh-pages
+          destination_dir: next
+          enable_jekyll: true
