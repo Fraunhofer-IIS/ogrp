@@ -9,6 +9,7 @@ allOf:
   - $ref: '#/$defs/CustomProperties'
 properties:
   pvt: { $ref: './pvt.schema.yaml' }
+  pnt: { $ref: './pnt.schema.yaml' }
 
 $defs:
   BaseProperties:

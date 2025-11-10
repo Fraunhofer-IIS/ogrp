@@ -1,0 +1,13 @@
+$id: pnt-message.schema.yaml
+$schema: https://json-schema.org/draft/2020-12/schema
+title: OGRP PNT message
+description: Reliable position, navigation, and timing including sensors, algorithms, integrity/continuity/availability, and policies.
+type: object
+allOf:
+  - $ref: './message.schema.yaml#/$defs/BaseProperties'
+  - $ref: './message.schema.yaml#/$defs/CustomProperties'
+properties:
+  $schema:
+    const: https://fraunhofer-iis.github.io/ogrp/next/pnt-message
+  pnt:
+    $ref: './pnt.schema.yaml'
