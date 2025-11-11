@@ -1,6 +1,11 @@
 name: Validate JSONs
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "draft-01" ]
+    tags: [ "draft-01/**" ]
+  pull_request:
+    branches: [ "draft-01" ]
 
 jobs:
   verify-json-validation:
@@ -12,26 +17,14 @@ jobs:
         id: checkout
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
 
-      - name: Validate draft-00 schema
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: json-schema
-          files: draft-00/schema
-
-      - name: Validate draft-00 OGRPs
-        uses: dsanders11/json-schema-validate-action@v1.2.0
-        with:
-          schema: draft-00/schema
-          files: draft-00/*.ogrp
-
       - name: Validate draft-01 schema
         uses: dsanders11/json-schema-validate-action@v1.2.0
         with:
           schema: json-schema
-          files: draft-01/schema
+          files: schema
 
       - name: Validate draft-01 OGRPs
         uses: dsanders11/json-schema-validate-action@v1.2.0
         with:
-          schema: draft-01/schema
-          files: draft-01/*.ogrp
+          schema: schema
+          files: "*.ogrp"
