@@ -2,7 +2,7 @@ name: Publish Draft Schemas
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "draft-00" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,7 +34,7 @@ jobs:
           rm -rf "$PUBLISH_DIR"
           mkdir -p "$PUBLISH_DIR"
           shopt -s nullglob
-          cp -r draft-* "$PUBLISH_DIR"/
+          cp schema "$PUBLISH_DIR"/
           cp README.md "$PUBLISH_DIR"/index.md
 
       - name: Deploy to gh-pages
@@ -43,4 +43,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ env.PUBLISH_DIR }}
           publish_branch: gh-pages
+          destination_dir: draft-00
           enable_jekyll: true
