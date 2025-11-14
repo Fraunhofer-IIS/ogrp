@@ -1,0 +1,31 @@
+$id: message.schema.yaml
+$schema: https://json-schema.org/draft/2020-12/schema
+
+title: OGRP message
+description: The OGRP message is the base schema for all OGRP messages.
+type: object
+allOf:
+  - $ref: '#/$defs/BaseProperties'
+  - $ref: '#/$defs/CustomProperties'
+
+$defs:
+  BaseProperties:
+    $comment: Generic properties for OGRP messages.
+    type: object
+    properties:
+      $schema:
+        description: The schema of this OGRP message.
+        type: string
+        format: uri
+      $epoch:
+        title: Epoch marker
+        description: Either UUIDv1 or UUIDv6 according to RFC9562. The Node ID should be the MAC address of the GNSS receiver.
+        type: string
+        format: uuid
+    required:
+      - $schema
+      - $epoch
+  CustomProperties:
+    $comment: Custom properties must be prefixed by 'x-'
+    patternProperties:
+      ^x-: true
