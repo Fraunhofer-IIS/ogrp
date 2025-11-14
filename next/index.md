@@ -3,7 +3,7 @@ OGRP
 
 The Open Gnss Receiver Protocol (<http://fraunhofer-iis.github.io/ogrp/>).
 
-[![Build Status](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml/badge.svg?branch=master)](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml)
+[![Build Status](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml/badge.svg?branch=next)](https://github.com/Fraunhofer-IIS/ogrp/actions/workflows/validate.yml)
 
 Introduction
 ============
@@ -71,7 +71,7 @@ Any use of the trademark „OGRP“ that is permitted by statutory law shall not
 
 1. You may distribute products implementing the OGRP specification in a modified version than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch, or any other repository Fraunhofer may use in the future for the specification of OGRP.  In this case you have to commit your modifications at https://github.com/Fraunhofer-IIS/ogrp under the CC-BY-SA 4.0 license to allow any third party the use of the modified specification.
 
-1. You may publish modified versions of the OGRP specification than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch under the CC-BY-SA 4.0 license. You are encouraged to inform Fraunhofer about such publications at https://github.com/Fraunhofer-IIS/ogrp.
+1. You may publish modified versions of the OGRP specification other than the one published at https://github.com/Fraunhofer-IIS/ogrp in the „master“ branch under the CC-BY-SA 4.0 license. You are encouraged to inform Fraunhofer about such publications at https://github.com/Fraunhofer-IIS/ogrp.
 
 
 
@@ -108,57 +108,22 @@ Message specification
 An OGRP message is composed of one JSON object. Two mandatory fields
 exist
 
-```
-msg = {
-    "protocol": protocol,
-    "id": id,
+```json
+{
+    "$schema": "https://fraunhofer-iis.github.io/ogrp/next/message",
+    "$epoch": "495a2464-baea-11f0-8de9-0242ac120002",
     ...
 }
-
-protocol = "OGRP1"
-id = string ; lower-case, underscore separated id, e.g. "measurement", ...
 ```
 
-The additional content in the message is dependant on the message id.
-Optional fields are allowed and must be ignored by parsers if unknown
+The additional content in the message is dependant on the message schema.
+Custom fields are allowed and must be prefixed with "x-". Those must be ignored by parsers if unknown
 (according to JSON).
 
 Example definitions
 -------------------
 
-A message of id 'measurement' for raw measurements of a GNSS receiver,
-e.g. including pseudorange and carrier phase measurements for multiple
-satellites on different channels, can look like this:
-
-```
-measurement = {
-    "protocol": protocol,
-    "id": "measurement",
-    "sw_version": int / hex,
-    "timestamp": float / string, ; (see Representing time and date)
-    "time_status": time_status,
-    "channel_measurement": [*channel_measurement]
-}
-
-time_status = string, ; "FREE_RUNNING" / "COARSE" / "GPS_SYNCED" / ...
-
-channel_measurement = {
-    "gnss": string, ; "GPS" / "GALILEO" / "GLONASS" / "SBAS" / ...
-    "satellite_id": int, ; starting at 1
-    "signal_type": string, ; "L1CA" / "L5I" / "E5aI" / ...
-    "channel_state": channel_state,
-    "doppler": float, ; (Hz)
-    "carrier_phase": float, ; (cycles)
-    "signal_to_noise_ratio": float, ; (dB)
-    "locktime": float, ; (seconds)
-    "pseudorange": float, ; (meters)
-    "code_phase": float, ; (chips)
-    "sw_channel_number": int ; starting at 0
-    "hw_channel_number": int ; starting at 0
-}
-
-channel_state = string, ; "IDLE" / "SEARCHING" / "PULL_IN" / "LOCKED" / "SYNCED"
-```
+See folder `examples`.
 
 Key naming
 ----------
@@ -177,17 +142,19 @@ as JSON Schema [[json-schema](#json-schema)].
 
 An example how to extend the OGRP core schema:
 
-```JSON
+```json
 {
-    "$id": "http://example.org/pvt-input-schema#",
-    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://example.org/pvt-input-schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "description": "Minimum schema for a PVT application",
     "type": "object",
+    "allOf": [
+      { "$ref": "https://fraunhofer-iis.github.io/ogrp/draft-xx/message#/$defs/BaseProperties" },
+      { "$ref": "https://fraunhofer-iis.github.io/ogrp/draft-xx/message#/$defs/CustomProperties" }
+    ],
     "properties": {
-        "protocol": { "type": "string" },
-        "id": { "type": "string" },
-        "timestamp": { "$ref": "http://ogrp.org/definitions/timestamp" },
-        "channel_measurements": {
+        "x-timestamp": { "$ref": "http://ogrp.org/definitions/timestamp" },
+        "x-channel_measurements": {
             "type": "object",
             "properties": {
                 "satellite_id": {
@@ -199,7 +166,7 @@ An example how to extend the OGRP core schema:
                 }
             }
         },
-        "satellites": {
+        "x-satellites": {
             "type": "object",
             "properties": {
                 "satellite_id": {
@@ -244,6 +211,6 @@ References
    RFC 7464, DOI 10.17487/RFC7464, February 2015, <https://tools.ietf.org/html/rfc7464>
  * <a name="json-schema">**[json-schema]**</a>:
    Wright, A., "JSON Schema: A Media Type for Describing JSON Documents",
-   draft-handrews-json-schema-01 (work in progress), March 2018.
-   <https://json-schema.org/draft-07/draft-handrews-json-schema-01>
+   draft-bhutton-json-schema-01 (work in progress), June 2022.
+   <https://json-schema.org/draft/2020-12/json-schema-core>
    <http://json-schema.org/>

@@ -1,0 +1,537 @@
+{
+  "$id": "https://fraunhofer-iis.github.io/ogrp/next/pnt",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Position, Navigation, Timing (PNT)",
+  "description": "Reliable position, navigation, and timing including sensors, algorithms, integrity/continuity/availability, and policies.",
+  "type": "object",
+  "properties": {
+    "fix": {
+      "$ref": "./pvt#/$defs/FixType"
+    },
+    "algorithm": {
+      "$ref": "./pvt#/$defs/Algorithm"
+    },
+    "datum": {
+      "$ref": "./pvt#/$defs/GeodeticDatum"
+    },
+    "position": {
+      "$ref": "#/$defs/Position"
+    },
+    "velocity": {
+      "$ref": "#/$defs/Velocity"
+    },
+    "orientation": {
+      "$ref": "#/$defs/Orientation"
+    },
+    "time": {
+      "$ref": "#/$defs/Time"
+    },
+    "covariance": {
+      "$ref": "#/$defs/Covariance"
+    },
+    "dop": {
+      "$ref": "#/$defs/DilutionOfPrecision"
+    },
+    "signals": {
+      "$ref": "#/$defs/Signals"
+    }
+  },
+  "required": [
+    "fix",
+    "datum",
+    "position",
+    "velocity",
+    "time"
+  ],
+  "$defs": {
+    "GeodeticPosition": {
+      "title": "Geodetic Position",
+      "description": "Geodetic position in latitude, longitude, and height.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "latitude": {
+          "title": "Latitude",
+          "description": "Latitude relative to equator in degrees. Positive values are northward.",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "x-unit": "deg"
+        },
+        "longitude": {
+          "title": "Longitude",
+          "description": "Longitude relative to prime meridian in degrees. Positive values are eastward.",
+          "type": "number",
+          "minimum": -180,
+          "exclusiveMaximum": 180,
+          "x-unit": "deg"
+        },
+        "height": {
+          "title": "Height above ellipsoid",
+          "description": "Height above ellipsoid in meters.",
+          "type": "number",
+          "default": 0,
+          "x-unit": "m"
+        },
+        "altitude_msl": {
+          "title": "Altitude above mean sea level",
+          "description": "Altitude above mean sea level (geoid) in meters.",
+          "type": "number",
+          "x-unit": "m"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "height"
+      ]
+    },
+    "Position": {
+      "title": "Position",
+      "description": "Position in various coordinate systems.",
+      "type": "object",
+      "properties": {
+        "cartesian_ecef": {
+          "$ref": "./pvt#/$defs/CartesianPosition"
+        },
+        "geodetic_ecef": {
+          "$ref": "#/$defs/GeodeticPosition"
+        }
+      },
+      "minProperties": 1
+    },
+    "EastNorthUpVelocity": {
+      "title": "East-North-Up Velocity",
+      "description": "Velocity in east, north, and up directions (ENU).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "east": {
+          "title": "East Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        },
+        "north": {
+          "title": "North Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        },
+        "up": {
+          "title": "Up Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        }
+      },
+      "required": [
+        "east",
+        "north",
+        "up"
+      ]
+    },
+    "NorthEastDownVelocity": {
+      "title": "North-East-Down Velocity",
+      "description": "Velocity in north, east, and down directions (NED).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "north": {
+          "title": "North Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        },
+        "east": {
+          "title": "East Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        },
+        "down": {
+          "title": "Down Velocity",
+          "type": "number",
+          "description": "Meters per second"
+        }
+      },
+      "required": [
+        "north",
+        "east",
+        "down"
+      ]
+    },
+    "GroundVerticalVelocity": {
+      "title": "Ground and Vertical Velocity",
+      "type": "object",
+      "properties": {
+        "course_over_ground": {
+          "title": "Course over Ground",
+          "description": "Heading relative to true north in degrees.",
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 360
+        },
+        "heading_magnetic": {
+          "title": "Heading Magnetic",
+          "description": "Heading relative to magnetic north in degrees.",
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 360
+        },
+        "speed_over_ground": {
+          "title": "Speed over Ground",
+          "description": "Speed over ground in meters per second.",
+          "type": "number",
+          "minimum": 0
+        },
+        "climb_rate": {
+          "title": "Climb Rate",
+          "description": "Climb rate in meters per second. Positive values indicate ascending.",
+          "type": "number"
+        }
+      },
+      "required": [
+        "course_over_ground",
+        "speed_over_ground"
+      ]
+    },
+    "Velocity": {
+      "title": "Velocity",
+      "description": "Velocity in various coordinate systems.",
+      "type": "object",
+      "properties": {
+        "ground_vertical": {
+          "$ref": "#/$defs/GroundVerticalVelocity"
+        },
+        "cartesian_ecef": {
+          "$ref": "./pvt#/$defs/CartesianVelocity"
+        },
+        "enu": {
+          "$ref": "#/$defs/EastNorthUpVelocity"
+        },
+        "ned": {
+          "$ref": "#/$defs/NorthEastDownVelocity"
+        }
+      }
+    },
+    "Quaternion": {
+      "title": "Unit Quaternion",
+      "description": "Normalized quaternion representation for orientation.",
+      "type": "object",
+      "properties": {
+        "w": {
+          "description": "Scalar part",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "x": {
+          "description": "Vector part X",
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "y": {
+          "description": "Vector part Y",
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "z": {
+          "description": "Vector part Z",
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "w",
+        "x",
+        "y",
+        "z"
+      ]
+    },
+    "EulerAngles": {
+      "title": "Euler Angles",
+      "description": "Euler angles representation (roll, pitch, yaw) in degrees relative to the earth surface.",
+      "type": "object",
+      "properties": {
+        "roll": {
+          "description": "Roll angle in degrees",
+          "type": "number",
+          "minimum": -180,
+          "exclusiveMaximum": 180
+        },
+        "pitch": {
+          "description": "Pitch angle in degrees",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "yaw": {
+          "description": "Yaw angle in degrees",
+          "type": "number",
+          "minimum": -180,
+          "exclusiveMaximum": 180
+        }
+      },
+      "required": [
+        "roll",
+        "pitch",
+        "yaw"
+      ]
+    },
+    "Orientation": {
+      "description": "Orientation in various representations.",
+      "type": "object",
+      "properties": {
+        "global": {
+          "$ref": "#/$defs/Quaternion"
+        },
+        "local": {
+          "$ref": "#/$defs/EulerAngles"
+        }
+      },
+      "minProperties": 1
+    },
+    "Time": {
+      "title": "Time",
+      "description": "GNSS system time representations.",
+      "type": "object",
+      "properties": {
+        "utc": {
+          "description": "Universal Coordinated Time (uses leap seconds)",
+          "$ref": "./pvt#/$defs/DateTime"
+        },
+        "tai": {
+          "description": "International Atomic Time (strictly monotonic)",
+          "$ref": "./pvt#/$defs/DateTime"
+        },
+        "gpst": {
+          "description": "GPS Time (strictly monotonic)",
+          "$ref": "./pvt#/$defs/GnssTime"
+        },
+        "gst": {
+          "description": "Galileo System Time (strictly monotonic)",
+          "$ref": "./pvt#/$defs/GnssTime"
+        },
+        "bdt": {
+          "description": "BeiDou Time (strictly monotonic)",
+          "$ref": "./pvt#/$defs/GnssTime"
+        },
+        "glonasst": {
+          "description": "GLONASS Time (UTC-like)",
+          "$ref": "./pvt#/$defs/DateTime"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "./pvt#/$defs/GnssTime"
+      },
+      "minProperties": 1
+    },
+    "PositionCovarianceNED": {
+      "title": "Covariance Matrix NED",
+      "description": "Upper-triangular elements of a symmetric 4×4 covariance matrix for variables {t, north, east, down}. Units must match the associated state components.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tt": {
+          "description": "Variance (t)",
+          "type": "number",
+          "minimum": 0
+        },
+        "nn": {
+          "description": "Variance (north)",
+          "type": "number",
+          "minimum": 0
+        },
+        "ee": {
+          "description": "Variance (east)",
+          "type": "number",
+          "minimum": 0
+        },
+        "dd": {
+          "description": "Variance (down)",
+          "type": "number",
+          "minimum": 0
+        },
+        "nt": {
+          "description": "Covariance (north",
+          "t)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "ne": {
+          "description": "Covariance (north",
+          "east)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "nd": {
+          "description": "Covariance (north",
+          "down)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "et": {
+          "description": "Covariance (east",
+          "t)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "ed": {
+          "description": "Covariance (east",
+          "down)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "dt": {
+          "description": "Covariance (down",
+          "t)": null,
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "tt",
+        "nn",
+        "ee",
+        "dd",
+        "nt",
+        "ne",
+        "nd",
+        "et",
+        "ed",
+        "dt"
+      ]
+    },
+    "Covariance": {
+      "description": "Covariance matrices for position, velocity, and time.",
+      "type": "object",
+      "properties": {
+        "global_position": {
+          "$ref": "./pvt#/$defs/PositionCovariance"
+        },
+        "global_velocity": {
+          "$ref": "./pvt#/$defs/VelocityCovariance"
+        },
+        "local_position": {
+          "$ref": "#/$defs/PositionCovarianceNED"
+        }
+      },
+      "minProperties": 1
+    },
+    "DilutionOfPrecision": {
+      "title": "Dilution of Precision",
+      "description": "Unitless DOP metrics derived from satellite geometry; lower is better. Rough accuracy guide assumes open-sky code positioning with UERE ≈ 3–5 m, where position_sigma ≈ DOP × UERE. Carrier-phase (RTK/PPP) have much smaller UERE and therefore much better accuracy.",
+      "type": "object",
+      "properties": {
+        "gdop": {
+          "description": "Geometric DOP",
+          "type": "number",
+          "minimum": 0
+        },
+        "pdop": {
+          "description": "Position DOP",
+          "type": "number",
+          "minimum": 0
+        },
+        "hdop": {
+          "description": "Horizontal DOP",
+          "type": "number",
+          "minimum": 0
+        },
+        "vdop": {
+          "description": "Vertical DOP",
+          "type": "number",
+          "minimum": 0
+        },
+        "tdop": {
+          "description": "Time DOP",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "gdop",
+        "pdop",
+        "hdop",
+        "vdop",
+        "tdop"
+      ]
+    },
+    "Signals": {
+      "title": "GNSS Signals",
+      "description": "GNSS signals used for position, velocity, and time computation.",
+      "type": "object",
+      "properties": {
+        "gps": {
+          "title": "GPS signals",
+          "description": "Number of signals used per frequency band. E.g. { \"l1ca\": 3, \"l2c\": 2 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "glonass": {
+          "title": "GLONASS signals",
+          "description": "Number of signals used per frequency band. E.g. { \"l1\": 3, \"l2\": 2 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "galileo": {
+          "title": "Galileo signals",
+          "description": "Number of signals used per frequency band. E.g. { \"e1b\": 3, \"e5a\": 2, \"e6a\": 5 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "beidou": {
+          "title": "BeiDou signals",
+          "description": "Number of signals used per frequency band. E.g. { \"b1c\": 3, \"b2a\": 2, \"b3\": 5 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "qzss": {
+          "title": "QZSS signals",
+          "description": "Number of signals used per frequency band. E.g. { \"l1ca\": 3, \"l2cm\": 2, \"l5i\": 5, \"l6lex\": 1 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "navic": {
+          "title": "NavIC/IRNSS signals",
+          "description": "Number of signals used per frequency band. E.g. { \"l5\": 3, \"s\": 2 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        },
+        "sbas": {
+          "title": "SBAS signals",
+          "description": "Number of signals used per frequency band. E.g. { \"l1egnos\": 3, \"l5waas\": 2 }.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "minProperties": 1
+        }
+      },
+      "minProperties": 1
+    }
+  }
+}
