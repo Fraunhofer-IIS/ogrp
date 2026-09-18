@@ -12,6 +12,11 @@
       "$ref": "#/$defs/CustomProperties"
     }
   ],
+  "properties": {
+    "pvt": {
+      "$ref": "./pvt"
+    }
+  },
   "$defs": {
     "BaseProperties": {
       "$comment": "Generic properties for OGRP messages.",
