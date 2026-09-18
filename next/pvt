@@ -56,8 +56,8 @@
           "title": "Reference Epoch",
           "description": "Reference epoch of coordinates as decimal year (e.g., 2025.0). Required if the frame is time-dependent.",
           "type": "number",
-          "minimum": 1900,
-          "maximum": 2100
+          "minimum": 1900.0,
+          "maximum": 2100.0
         },
         "ellipsoid": {
           "title": "Reference Ellipsoid",
@@ -104,8 +104,8 @@
       "description": "Length in meters.",
       "$comment": "Range is limited to +/- 100 million km to guarantee sub-millimeter precision with IEEE double.",
       "type": "number",
-      "minimum": -100000000000,
-      "maximum": 100000000000,
+      "minimum": -100e9,
+      "maximum": 100e9,
       "x-unit": "m"
     },
     "Speed": {

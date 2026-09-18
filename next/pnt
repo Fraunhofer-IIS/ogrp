@@ -32,8 +32,8 @@
     "dop": {
       "$ref": "#/$defs/DilutionOfPrecision"
     },
-    "signals": {
-      "$ref": "#/$defs/Signals"
+    "satellites": {
+      "$ref": "#/$defs/Satellites"
     }
   },
   "required": [
@@ -462,73 +462,120 @@
         "tdop"
       ]
     },
-    "Signals": {
-      "title": "GNSS Signals",
+    "Satellite": {
+      "title": "GNSS Satellite Signals",
+      "type": "object",
+      "properties": {
+        "signals_used": {
+          "title": "Signals Used",
+          "description": "List of GNSS signals",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "snr": {
+          "title": "Signal-to-Noise Ratio",
+          "description": "SNR in dB-Hz.",
+          "type": "number"
+        },
+        "elevation": {
+          "title": "Elevation Angle",
+          "description": "Elevation angle in degrees.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "azimuth": {
+          "title": "Azimuth Angle",
+          "description": "Azimuth angle in degrees.",
+          "type": "number",
+          "minimum": -180,
+          "exclusiveMaximum": 180
+        }
+      }
+    },
+    "Satellites": {
+      "title": "GNSS Satellites",
       "description": "GNSS signals used for position, velocity, and time computation.",
       "type": "object",
       "properties": {
         "gps": {
           "title": "GPS signals",
-          "description": "Number of signals used per frequency band. E.g. { \"l1ca\": 3, \"l2c\": 2 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "glonass": {
           "title": "GLONASS signals",
-          "description": "Number of signals used per frequency band. E.g. { \"l1\": 3, \"l2\": 2 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "galileo": {
           "title": "Galileo signals",
-          "description": "Number of signals used per frequency band. E.g. { \"e1b\": 3, \"e5a\": 2, \"e6a\": 5 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "beidou": {
           "title": "BeiDou signals",
-          "description": "Number of signals used per frequency band. E.g. { \"b1c\": 3, \"b2a\": 2, \"b3\": 5 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "qzss": {
           "title": "QZSS signals",
-          "description": "Number of signals used per frequency band. E.g. { \"l1ca\": 3, \"l2cm\": 2, \"l5i\": 5, \"l6lex\": 1 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "navic": {
           "title": "NavIC/IRNSS signals",
-          "description": "Number of signals used per frequency band. E.g. { \"l5\": 3, \"s\": 2 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         },
         "sbas": {
           "title": "SBAS signals",
-          "description": "Number of signals used per frequency band. E.g. { \"l1egnos\": 3, \"l5waas\": 2 }.",
           "type": "object",
-          "additionalProperties": {
-            "type": "integer"
+          "minProperties": 1,
+          "patternProperties": {
+            "^[0-9]+$": {
+              "$ref": "#/$defs/Satellite"
+            }
           },
-          "minProperties": 1
+          "additionalProperties": false
         }
       },
       "minProperties": 1
