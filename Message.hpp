@@ -8,8 +8,11 @@
 
 #pragma once
 
+#include <optional>
 #include <nlohmann/json.hpp>
 #include "helper.hpp"
+
+#include "PositionVelocityTimePvt.hpp"
 
 namespace ogrp {
     /**
@@ -22,6 +25,7 @@ namespace ogrp {
      * The OGRP message is the base schema for all OGRP messages.
      */
     struct Message {
+        std::optional<PositionVelocityTimePvt> pvt;
         /**
          * Either UUIDv1 or UUIDv6 according to RFC9562. The Node ID should be the MAC address of
          * the GNSS receiver.

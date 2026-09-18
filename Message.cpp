@@ -8,9 +8,20 @@
 
 #pragma once
 
+#include <optional>
 #include <nlohmann/json.hpp>
 #include "helper.hpp"
 
+#include "CovarianceMatrix.hpp"
+#include "VelocityCovarianceMatrix.hpp"
+#include "CovarianceMatrices.hpp"
+#include "ReferenceEllipsoid.hpp"
+#include "GeodeticDatum.hpp"
+#include "CartesianPosition.hpp"
+#include "GnssTime.hpp"
+#include "Time.hpp"
+#include "CartesianVelocity.hpp"
+#include "PositionVelocityTimePvt.hpp"
 #include "Message.hpp"
 namespace ogrp {
 }
